@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Inteligența artificială – Clasa a IX-a | TIC</title>
+<meta name="description" content="Ce este IA, cum „învață” un program și cum folosim un chatbot inteligent și corect, explicate cu animație la scroll. TIC, clasa a IX-a, Liceul Teoretic „Panait Cerna” Brăila.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.lab{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.lab h3{font-size:1.1rem;margin-bottom:6px}
+.lab p{color:var(--muted)}
+.row{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0;align-items:center}
+.row .lbl{font-size:.85rem;color:var(--muted);min-width:120px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#0a0f22;border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-size:.92rem}
+.chip.new{border-color:var(--accent);animation:pop .4s}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
+.lab button{font:inherit;font-weight:600;cursor:pointer;border-radius:99px;padding:9px 18px;border:1px solid var(--line);background:#0a0f22;color:var(--ink)}
+.lab button:hover{border-color:var(--accent)}
+.lab button.pri{background:var(--accent);border-color:var(--accent);color:#14062a}
+.lab button:disabled{opacity:.45;cursor:default}
+.lab button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.out{margin-top:14px;padding:14px 16px;border-radius:12px;background:#0a0f22;border:1px solid var(--line);min-height:3em}
+.out b{color:var(--accent)}
+.sent{font-size:1.15rem;margin:10px 0}
+.sent em{font-style:normal;color:var(--accent);font-weight:700}
+.bars{display:grid;gap:8px;margin:12px 0}
+.bar{display:grid;grid-template-columns:90px 1fr 48px;gap:10px;align-items:center;font-size:.95rem}
+.bar i{display:block;height:12px;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.bar s{text-decoration:none;text-align:right;color:var(--muted)}
+.tally{color:var(--muted);font-size:.92rem}
+.prompt .card p b{color:var(--accent)}
+</style>
+</head>
+<body data-theme="ia">
+<div class="progress"></div>
+<header class="topbar"><a href="../../#u2">← Înapoi la manual</a><span class="tag">Clasa a IX-a · Inteligența artificială</span></header>
+
+<section class="hero" aria-label="Animație: cum învață un program de inteligență artificială">
+  <div class="hero-stage">
+    <canvas aria-hidden="true"></canvas>
+    <div class="hero-shade"></div>
+    <div class="hero-title">
+      <span class="kicker">TIC · Clasa a IX-a</span>
+      <h1>Inteligența artificială pe înțelesul tuturor</h1>
+      <p>Derulează și urmărește cum „învață” un program</p>
+    </div>
+    <div class="labels" data-for="canvas">
+      <div class="label" data-at=".04,.27"><span class="num">1/4</span><b>Datele și etichetele</b><span>Programul primește multe exemple, fiecare cu răspunsul corect: „acesta e un măr”, „aceasta e o pară”.</span></div>
+      <div class="label" data-at=".27,.52"><span class="num">2/4</span><b>Antrenarea</b><span>Exemplele trec prin rețea de mii de ori. Legăturile se ajustează până când rețeaua găsește <b>tiparul</b>: forma, culoarea, codița.</span></div>
+      <div class="label" data-at=".52,.77"><span class="num">3/4</span><b>Predicția</b><span>Vine un exemplu nou, fără etichetă. Rețeaua nu „știe”, ci estimează: <b>măr, 92%</b>. Poate greși.</span></div>
+      <div class="label" data-at=".77,1.01"><span class="num">4/4</span><b>Chatbotul: cuvânt cu cuvânt</b><span>Un chatbot alege, la fiecare pas, un cuvânt probabil. De obicei nimerește, dar uneori scrie sigur pe el ceva fals: o <b>halucinație</b>.</span></div>
+    </div>
+    <div class="scroll-hint">DERULEAZĂ ↓</div>
+  </div>
+</section>
+
+<main>
+  <section class="block">
+    <h2 class="reveal">IA este deja în jurul tău</h2>
+    <p class="lead reveal"><b>Inteligența artificială</b> creează programe care fac lucruri pe care de obicei le fac oamenii: recunosc imagini și voci, traduc, recomandă, răspund la întrebări. Nu gândește ca un om: găsește <b>tipare</b> în foarte multe exemple.</p>
+    <div class="grid">
+      <div class="card reveal"><div class="ico">🔍</div><h3>Recunoaște</h3><p>Filtrul de spam, deblocarea telefonului cu fața, traducerea unui panou prin cameră.</p></div>
+      <div class="card reveal"><div class="ico">🎧</div><h3>Recomandă</h3><p>Clipurile din feed, melodiile din playlistul „pentru tine”, produsele sugerate.</p></div>
+      <div class="card reveal"><div class="ico">🌦️</div><h3>Prezice</h3><p>Prognoza meteo, timpul de sosire în aplicația de hărți, aglomerația dintr-un magazin.</p></div>
+      <div class="card reveal"><div class="ico">✨</div><h3>Generează</h3><p>Chatboții care scriu texte, aplicațiile care creează imagini, voci sau muzică.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Cum „învață” un program</h2>
+    <p class="lead reveal">Așa cum ai învățat să recunoști un măr: cineva ți-a arătat multe mere. Procesul se numește <b>învățare automată</b>.</p>
+    <ol class="steps reveal">
+      <li><b>Datele</b><span>Adunăm multe exemple: mii de fotografii cu fructe.</span></li>
+      <li><b>Etichetarea</b><span>Spunem ce reprezintă fiecare exemplu: „măr”, „pară”. De multe ori, etichetele le pun oameni.</span></li>
+      <li><b>Antrenarea</b><span>Programul compară ce ghicește cu eticheta și se corectează, din nou și din nou, până găsește tiparul.</span></li>
+      <li><b>Testarea</b><span>Îl verificăm pe exemple noi, pe care nu le-a văzut. Abia așa aflăm dacă a învățat sau doar a „memorat”.</span></li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Laborator: datele contează</h2>
+    <p class="lead reveal">Un model învață <b>doar</b> din exemplele pe care le primește. Antrenează-l, testează-l, apoi repară datele.</p>
+    <div class="lab reveal" id="bias">
+      <div class="row"><span class="lbl">Date de antrenare:</span><span id="bset"></span></div>
+      <div class="row">
+        <button type="button" class="pri" id="btrain">1. Antrenează modelul</button>
+        <button type="button" id="btest" disabled>2. Testează pe 🍏 măr verde</button>
+        <button type="button" id="bfix" disabled>3. Adaugă mere verzi în date</button>
+      </div>
+      <div class="out" id="bout" aria-live="polite">Modelul încă nu a văzut niciun exemplu.</div>
+    </div>
+    <div class="callout reveal"><b>Părtinire (bias):</b> dacă datele sunt puține, prea asemănătoare sau favorizează un grup de oameni, rezultatele vor fi greșite sau nedrepte. Un sistem de recunoaștere facială antrenat mai ales pe un singur tip de chip greșește mai des la ceilalți.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Laborator: chatbotul alege cuvinte</h2>
+    <p class="lead reveal">Un chatbot nu caută răspunsul într-o carte. Alege, cuvânt cu cuvânt, o continuare probabilă. Apasă de mai multe ori și urmărește ce iese.</p>
+    <div class="lab reveal" id="nw">
+      <div class="sent" id="nsent">Primul om care a pășit pe Lună a fost <em>…</em></div>
+      <div class="bars" id="nbars"></div>
+      <div class="row"><button type="button" class="pri" id="ngo">Generează cuvântul următor</button><button type="button" id="n10">Generează de 20 de ori</button></div>
+      <div class="out" id="nout" aria-live="polite">Apasă butonul.</div>
+      <p class="tally" id="ntally"></p>
+    </div>
+    <div class="callout reveal"><b>Halucinația</b> este un răspuns inventat, spus foarte sigur: o dată greșită, o persoană care nu a spus acel citat, o carte sau un link care nu există. De aceea, informațiile importante <b>le verifici în cel puțin două surse de încredere</b>.</div>
+  </section>
+
+  <section class="block prompt">
+    <h2 class="reveal">Cererea bună (promptul)</h2>
+    <p class="lead reveal">Cu cât îi spui mai clar ce vrei, cu atât răspunsul e mai util. Patru ingrediente:</p>
+    <div class="grid">
+      <div class="card reveal"><div class="ico">🎭</div><h3>Rol</h3><p>Cine să fie: <b>„Ești profesor de biologie.”</b></p></div>
+      <div class="card reveal"><div class="ico">🧭</div><h3>Context</h3><p>Pentru ce: <b>„Sunt în clasa a IX-a și am test mâine.”</b></p></div>
+      <div class="card reveal"><div class="ico">🎯</div><h3>Sarcină</h3><p>Ce vrei: <b>„Explică-mi fotosinteza și dă-mi 3 întrebări de verificare.”</b></p></div>
+      <div class="card reveal"><div class="ico">📐</div><h3>Format</h3><p>Cum să arate: <b>„Pe scurt, în 5 puncte, fără termeni pe care nu i-am învățat.”</b></p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Folosesc IA corect</h2>
+    <ol class="steps reveal">
+      <li><b>Nu introduc date personale</b><span>Nici ale mele, nici ale altora: nume complete, adrese, parole, fotografii private.</span></li>
+      <li><b>Lucrarea rămâne a mea</b><span>IA mă poate ajuta să înțeleg o lecție sau să-mi corectez textul, nu să-mi facă tema.</span></li>
+      <li><b>Declar când am folosit IA</b><span>Spun ce instrument am folosit și la ce: „Am cerut idei pentru titlu de la un chatbot.”</span></li>
+      <li><b>Verific ce primesc</b><span>Caut informațiile importante în manual sau pe site-uri oficiale. Verific dacă sursele date de chatbot există.</span></li>
+      <li><b>Atenție la deepfake</b><span>Imaginile, vocile și clipurile generate pot părea reale. Verific sursa înainte să distribui.</span></li>
+    </ol>
+    <div class="callout reveal"><b>Știai că?</b> În Uniunea Europeană există o lege pentru IA, <b>AI Act</b>, adoptată în 2024 și aplicată treptat. Interzice unele utilizări periculoase și cere reguli stricte pentru sistemele folosite în educație.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Verifică-te</h2>
+    <details class="q reveal"><summary>Filtrul de spam este un exemplu de IA care recunoaște, recomandă sau generează?</summary><p>Recunoaște (clasifică): pune fiecare mesaj în categoria „spam” sau „mesaj normal”, pe baza tiparelor învățate.</p></details>
+    <details class="q reveal"><summary>De ce testăm un model pe exemple pe care nu le-a văzut la antrenare?</summary><p>Ca să aflăm dacă a învățat tiparul sau doar a memorat exemplele. Un model bun trebuie să funcționeze pe date noi.</p></details>
+    <details class="q reveal"><summary>Ce este o halucinație a unui chatbot?</summary><p>Un răspuns inventat care sună convingător: date, citate sau surse care nu există. Se descoperă verificând în surse de încredere.</p></details>
+    <details class="q reveal"><summary>Un model antrenat doar cu fotografii de pisici albe vede o pisică neagră. Ce se poate întâmpla?</summary><p>Poate să nu o recunoască drept pisică. Datele de antrenare nu au fost variate: este un exemplu de părtinire (bias).</p></details>
+  </section>
+</main>
+<footer>Liceul Teoretic „Panait Cerna” Brăila · TIC · prof. Aura Ion</footer>
+<script src="assets/scenes.js"></script>
+<script src="assets/main.js"></script>
+<script>
+// Laborator 1: datele contează (modelul „învață” că verde = pară)
+(function(){
+  const set=document.getElementById('bset'), out=document.getElementById('bout');
+  const bt=document.getElementById('btrain'), bs=document.getElementById('btest'), bf=document.getElementById('bfix');
+  let data=[['🍎','măr'],['🍎','măr'],['🍎','măr'],['🍎','măr'],['🍐','pară'],['🍐','pară'],['🍐','pară'],['🍐','pară']], fixed=false, trained=false;
+  function draw(nw){set.innerHTML=data.map((d,i)=>`<span class="chip${nw&&i>=data.length-nw?' new':''}">${d[0]} ${d[1]}</span>`).join(' ');}
+  draw();
+  bt.onclick=()=>{trained=true;bs.disabled=false;
+    out.innerHTML=fixed
+      ?'Antrenare gata. Modelul a observat că <b>forma</b> deosebește merele de pere: rotund = măr, alungit = pară.'
+      :'Antrenare gata. Modelul a observat că toate merele sunt <b>roșii</b>, iar toate perele <b>verzi</b>. Pentru el, regula este simplă: culoarea.';};
+  bs.onclick=()=>{
+    out.innerHTML=fixed
+      ?'🍏 → <b>măr (89%)</b>. Corect! Cu date variate, modelul a învățat tiparul potrivit.'
+      :'🍏 → <b>pară (81%)</b>. Greșit! Modelul n-a văzut niciodată un măr verde, așa că a ales după culoare. Problema nu e modelul, ci datele.';
+    bf.disabled=fixed;};
+  bf.onclick=()=>{fixed=true;data=data.concat([['🍏','măr'],['🍏','măr'],['🍏','măr']]);draw(3);bf.disabled=true;bs.disabled=true;trained=false;
+    out.innerHTML='Am adăugat 3 mere verzi. Datele s-au schimbat, deci modelul trebuie <b>antrenat din nou</b>.';};
+})();
+// Laborator 2: cuvântul următor, ales după probabilitate
+(function(){
+  const C=[['Neil Armstrong',.86,true],['Buzz Aldrin',.08,false],['Iuri Gagarin',.04,false],['Traian Vuia',.02,false]];
+  const bars=document.getElementById('nbars'), sent=document.getElementById('nsent').querySelector('em');
+  const out=document.getElementById('nout'), tal=document.getElementById('ntally');
+  bars.innerHTML=C.map(c=>`<div class="bar"><span>${c[0]}</span><i style="width:${c[1]*100}%"></i><s>${Math.round(c[1]*100)}%</s></div>`).join('');
+  let n=0,bad=0;
+  function pick(){let r=Math.random(),i=0;while(i<C.length-1&&r>=C[i][1]){r-=C[i][1];i++;}return C[i];}
+  function one(){const c=pick();n++;if(!c[2])bad++;sent.textContent=c[0]+'.';
+    out.innerHTML=c[2]?'Răspuns corect, ales pentru că era cel mai probabil.'
+      :`<b>Halucinație!</b> „${c[0]}” a avut o șansă mică, dar a fost ales. Chatbotul ar fi scris-o la fel de sigur pe el.`;
+    tal.textContent=`Încercări: ${n} · răspunsuri greșite: ${bad} (${Math.round(bad/n*100)}%)`;}
+  document.getElementById('ngo').onclick=one;
+  document.getElementById('n10').onclick=()=>{for(let i=0;i<20;i++)one();};
+})();
+</script>
+</body>
+</html>
