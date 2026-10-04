@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hardware – Clasa a IX-a | TIC</title>
+<meta name="description" content="Componentele unui calculator explicate cu animație la scroll. TIC, clasa a IX-a, Liceul Teoretic „Panait Cerna” Brăila.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-theme="hardware">
+<div class="progress"></div>
+<header class="topbar"><a href="../../#u6">← Înapoi la manual</a><span class="tag">Clasa a IX-a · Hardware</span></header>
+
+<section class="hero" aria-label="Animație: în interiorul calculatorului">
+  <div class="hero-stage">
+    <canvas aria-hidden="true"></canvas>
+    <video data-src="hero.mp4" data-mobile="hero-mobil.mp4" poster="hero-poster.jpg" muted playsinline aria-hidden="true"></video>
+    <div class="hero-shade"></div>
+    <div class="hero-title">
+      <span class="kicker">TIC · Clasa a IX-a</span>
+      <h1>Călătorie în interiorul calculatorului</h1>
+      <p>Derulează și intră pe placa de bază</p>
+    </div>
+    <!-- Etichete sincronizate cu clipul hero.mp4 -->
+    <div class="labels" data-for="video">
+      <div class="label" data-at=".04,.33"><span class="num">1/3</span><b>Condensatoarele</b><span>Stochează și eliberează energie, ca alimentarea componentelor să fie stabilă.</span></div>
+      <div class="label" data-at=".33,.6"><span class="num">2/3</span><b>Traseele de cupru</b><span>„Drumurile” plăcii de bază: pe ele circulă curentul și datele între componente.</span></div>
+      <div class="label" data-at=".6,1.01"><span class="num">3/3</span><b>Procesorul (CPU)</b><span>Montat în socket, execută instrucțiunile programelor – miliarde pe secundă.</span></div>
+    </div>
+    <!-- Etichete pentru animația din cod (când nu există clip) -->
+    <div class="labels" data-for="canvas">
+      <div class="label" data-at=".05,.28"><span class="num">1/4</span><b>Placa de bază</b><span>„Orașul” care leagă toate componentele prin trasee de cupru.</span></div>
+      <div class="label" data-at=".28,.53"><span class="num">2/4</span><b>Procesorul (CPU)</b><span>Execută instrucțiunile programelor – miliarde pe secundă.</span></div>
+      <div class="label" data-at=".53,.78"><span class="num">3/4</span><b>Memoria RAM</b><span>Memorie rapidă și temporară: se golește la oprirea calculatorului.</span></div>
+      <div class="label" data-at=".78,1.01"><span class="num">4/4</span><b>Stocarea (SSD/HDD)</b><span>Păstrează fișierele și sistemul de operare și după oprire.</span></div>
+    </div>
+    <div class="scroll-hint">DERULEAZĂ ↓</div>
+  </div>
+</section>
+
+<main>
+  <section class="block">
+    <h2 class="reveal">Componentele principale</h2>
+    <p class="lead reveal">Un calculator funcționează după schema <b>intrare → prelucrare → memorare → ieșire</b>. Fiecare componentă are rolul ei.</p>
+    <div class="grid">
+      <div class="card reveal"><div class="ico">🧠</div><h3>Procesor (CPU)</h3><p>Unitatea centrală de prelucrare. Se caracterizează prin frecvență (GHz) și număr de nuclee.</p></div>
+      <div class="card reveal"><div class="ico">⚡</div><h3>Memorie RAM</h3><p>Memorie de lucru, volatilă. Mai multă RAM = mai multe programe deschise fără încetinire.</p></div>
+      <div class="card reveal"><div class="ico">💾</div><h3>Stocare</h3><p>HDD (magnetic, mai ieftin) sau SSD (fără piese mobile, mult mai rapid). Capacitate în GB/TB.</p></div>
+      <div class="card reveal"><div class="ico">🎮</div><h3>Placa video (GPU)</h3><p>Prelucrează imaginile. Integrată în procesor sau dedicată, pentru jocuri și grafică 3D.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Așa arată în realitate</h2>
+    <p class="lead reveal">Privește fotografia unei unități centrale deschise. Câte componente recunoști?</p>
+    <figure class="photo reveal">
+      <img src="interior-pc.jpg" width="1376" height="768" loading="lazy" alt="Interiorul unei unități centrale deschise: placa de bază cu trasee luminoase, un cooler cu ventilator montat peste procesor, două module de memorie RAM și cabluri de alimentare.">
+      <figcaption>Interiorul unei unități centrale, iluminat cu LED-uri albastre.</figcaption>
+    </figure>
+    <div class="grid">
+      <details class="q reveal"><summary>Turnul metalic cu ventilator</summary><p>Este <b>coolerul procesorului</b>. Procesorul se află sub el și se încălzește în timpul lucrului.</p></details>
+      <details class="q reveal"><summary>Cele două plăcuțe luminoase din dreapta</summary><p>Sunt <b>modulele de memorie RAM</b>, montate în sloturile de lângă procesor.</p></details>
+      <details class="q reveal"><summary>Fantele lungi din stânga jos</summary><p>Sunt <b>sloturile PCIe</b>, în care se montează placa video sau alte plăci de extensie.</p></details>
+      <details class="q reveal"><summary>Mănunchiul de cabluri împletite</summary><p>Sunt <b>cablurile sursei de alimentare</b>, care duc curentul la placa de bază.</p></details>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Periferice de intrare și de ieșire</h2>
+    <div class="grid">
+      <div class="card reveal"><h3>Intrare</h3><p>Tastatură, mouse, microfon, cameră web, scanner, touchpad.</p></div>
+      <div class="card reveal"><h3>Ieșire</h3><p>Monitor, imprimantă, boxe, căști, videoproiector.</p></div>
+      <div class="card reveal"><h3>Intrare/ieșire</h3><p>Ecran tactil, stick USB, imprimantă multifuncțională, placă de rețea.</p></div>
+    </div>
+    <div class="callout reveal"><b>De reținut:</b> RAM-ul și stocarea se măsoară amândouă în GB, dar au roluri diferite. RAM = birou de lucru, stocare = dulap de arhivă.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Verifică-te</h2>
+    <details class="q reveal"><summary>Ce se întâmplă cu datele din RAM la oprirea calculatorului?</summary><p>Se pierd, deoarece RAM-ul este o memorie volatilă.</p></details>
+    <details class="q reveal"><summary>De ce pornește mai repede un laptop cu SSD decât unul cu HDD?</summary><p>SSD-ul nu are piese mecanice și citește datele de câteva ori mai repede.</p></details>
+    <details class="q reveal"><summary>Ecranul tactil este periferic de intrare sau de ieșire?</summary><p>De ambele tipuri: afișează imaginea și preia atingerile.</p></details>
+  </section>
+</main>
+<footer>Liceul Teoretic „Panait Cerna” Brăila · TIC · prof. Aura Ion</footer>
+<script src="assets/scenes.js"></script>
+<script src="assets/main.js"></script>
+</body>
+</html>

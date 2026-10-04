@@ -510,6 +510,8 @@ ${APL(4,"Prezentarea finală",["Creează expunerea particularizată <i>Părinți
 /* ================================================================ U6 */
 { id:"u6", code:"U6", color:"--c6", name:"Componenta hardware", weeks:"S23–S27 • 8 martie – 9 aprilie 2027",
   intro:"Din ce este făcut un calculator și cum aleg componentele potrivite.",
+  anim:{ href:"lectii/hardware/", title:"🎬 Lecția animată: Călătorie în interiorul calculatorului",
+   text:"Derulează și intră pe placa de bază: condensatoare, trasee de cupru, procesor. Include fotografia unei unități centrale și o activitate de identificare." },
   lessons:[
   { id:"l1", title:"Tipuri de sisteme de calcul. Arhitectura", html:`
 ${DESC(`<p>De ce un gamer alege un desktop, iar un student care călătorește un laptop?</p>`)}
@@ -1191,7 +1193,7 @@ function unitDone(u){ const p=store.get("prog",{})[u.id]||{}; const t=store.get(
 function drawToc(){
   const [cu,cl]=(location.hash||"").slice(1).split("/");
   $("#toc").innerHTML=`<li><a class="u ${!cu||cu==="acasa"?"cur":""}" href="#acasa"><i style="--k:var(--c0)">★</i>Început</a></li>`+UNITS.map(u=>`<li><a class="u ${cu===u.id?"cur":""} ${unitDone(u)?"done":""}" href="#${u.id}"><i style="--k:var(${u.color})">${u.code}</i>${u.name}</a>
-   ${cu===u.id?`<ol>${u.lessons.map((l,i)=>`<li><a class="${cl===l.id?"cur":""}" href="#${u.id}/${l.id}">${i+1}. ${l.title}</a></li>`).join("")}<li><a class="${cl==="fisa"?"cur":""}" href="#${u.id}/fisa">Fișa de lucru</a></li>${u.quiz?`<li><a class="${cl==="test"?"cur":""}" href="#${u.id}/test">Test de evaluare</a></li>`:""}</ol>`:""}</li>`).join("");
+   ${cu===u.id?`<ol>${u.lessons.map((l,i)=>`<li><a class="${cl===l.id?"cur":""}" href="#${u.id}/${l.id}">${i+1}. ${l.title}</a></li>`).join("")}${u.anim?`<li><a href="${u.anim.href}">🎬 Lecția animată</a></li>`:""}<li><a class="${cl==="fisa"?"cur":""}" href="#${u.id}/fisa">Fișa de lucru</a></li>${u.quiz?`<li><a class="${cl==="test"?"cur":""}" href="#${u.id}/test">Test de evaluare</a></li>`:""}</ol>`:""}</li>`).join("");
 }
 
 /* ---------- pagini ---------- */
@@ -1213,6 +1215,7 @@ function home(){
 function unitHome(u){
   $("#app").innerHTML=`<div class="chap"><div class="k">${u.code} • ${u.weeks}</div><h2>${u.name}</h2><p>${u.intro}</p></div>
   <div class="page"><h3 style="margin-top:0">Lecțiile unității</h3><div class="lesson-list">${u.lessons.map((l,i)=>`<a href="#${u.id}/${l.id}"><span class="n">${i+1}</span><span>${l.title}</span></a>`).join("")}
+  ${u.anim?`<a href="${u.anim.href}" style="border-color:var(--uc)"><span class="n">▶</span><span><b>${u.anim.title}</b><br><small class="small">${u.anim.text}</small></span></a>`:""}
   <a href="#${u.id}/fisa"><span class="n">✎</span><span><b>Fișa de lucru individuală</b><br><small class="small">${u.sheet.title}</small></span></a>
   ${u.quiz?`<a href="#${u.id}/test"><span class="n">?</span><span><b>Test de evaluare</b> – ${u.quiz.length} întrebări</span></a>`:""}</div></div>`;
 }
