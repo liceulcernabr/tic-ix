@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Documente în Word – Clasa a IX-a | TIC</title>
+<meta name="description" content="Diacriticele și codificarea textului, stilurile, cuprinsul automat și îmbinarea corespondenței, explicate cu animație la scroll. TIC, clasa a IX-a, Liceul Teoretic „Panait Cerna” Brăila.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.lab{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.lab label{font-weight:600;display:block;margin-bottom:8px}
+.lab input[type=text]{width:100%;font:inherit;font-size:1.1rem;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#0a0f22;color:var(--ink)}
+.lab input:focus-visible,.lab select:focus-visible,.lab button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.chars{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.ch{background:#0a0f22;border:1px solid var(--line);border-radius:10px;padding:8px 10px;text-align:center;min-width:64px}
+.ch b{display:block;font-size:1.4rem}
+.ch code{display:block;font-size:.75rem;color:var(--accent)}
+.ch small{display:block;font-size:.72rem;color:var(--muted)}
+.ch.warn{border-color:#ff8fa3}
+.ch.n2{border-color:var(--accent2)}
+.sum{color:var(--muted)}
+.sum b{color:var(--ink)}
+.alert{margin-top:10px;color:#ff8fa3}
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+.lab select{font:inherit;background:#0a0f22;color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
+.mm{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:760px){.mm{grid-template-columns:1fr}}
+.doc{background:#fdfdfd;color:#1a2230;border-radius:10px;padding:20px 22px;line-height:1.7}
+.doc h3{color:#2f5597;margin-bottom:8px}
+.fld{background:#e3ebfb;color:#2f5597;border-radius:4px;padding:0 4px;font-weight:600}
+.val{background:#fff3c4;border-radius:4px;padding:0 4px;font-weight:600}
+.xl{width:100%;border-collapse:collapse;font-size:.92rem}
+.xl th{background:#1d6f42;color:#fff;padding:6px 8px;text-align:left}
+.xl td{border-bottom:1px solid var(--line);padding:6px 8px}
+.xl tr.sel td{background:rgba(29,111,66,.3)}
+.lab button{font:inherit;font-weight:600;cursor:pointer;border-radius:99px;padding:8px 16px;border:1px solid var(--line);background:#0a0f22;color:var(--ink)}
+.lab button:hover{border-color:var(--accent)}
+.tablewrap{overflow-x:auto}
+</style>
+</head>
+<body data-theme="word">
+<div class="progress"></div>
+<header class="topbar"><a href="../../#u4">← Înapoi la manual</a><span class="tag">Clasa a IX-a · Documente în Word</span></header>
+
+<section class="hero" aria-label="Animație: codurile literelor, stilurile, cuprinsul automat și îmbinarea corespondenței">
+  <div class="hero-stage">
+    <canvas aria-hidden="true"></canvas>
+    <div class="hero-shade"></div>
+    <div class="hero-title">
+      <span class="kicker">TIC · Clasa a IX-a</span>
+      <h1>Documente profesionale în Word</h1>
+      <p>Derulează și urmărește ce face Word pentru tine</p>
+    </div>
+    <div class="labels" data-for="canvas">
+      <div class="label" data-at=".04,.27"><span class="num">1/4</span><b>Fiecare literă este un număr</b><span>„A” are codul 65 și ocupă 1 octet. „ș” are codul U+0219 și ocupă 2 octeți în UTF-8, iar „€” ocupă 3.</span></div>
+      <div class="label" data-at=".27,.52"><span class="num">2/4</span><b>Stilurile</b><span>Titlurile formatate „de mână” arată fiecare altfel. Cu stilul <b>Heading 1</b> arată toate la fel, iar Word le recunoaște ca structură.</span></div>
+      <div class="label" data-at=".52,.77"><span class="num">3/4</span><b>Cuprinsul automat</b><span>Cuprinsul se construiește din stiluri. Muți un capitol, apeși <b>Actualizare cuprins</b> și numerele de pagină se corectează singure.</span></div>
+      <div class="label" data-at=".77,1.01"><span class="num">4/4</span><b>Îmbinarea corespondenței</b><span>Un singur model și un tabel Excel cu destinatarii. Word creează câte o invitație pentru fiecare rând.</span></div>
+    </div>
+    <div class="scroll-hint">DERULEAZĂ ↓</div>
+  </div>
+</section>
+
+<main>
+  <section class="block">
+    <h2 class="reveal">Textul în calculator</h2>
+    <p class="lead reveal">Calculatorul lucrează doar cu numere. Fiecare caracter primește un cod.</p>
+    <div class="grid">
+      <div class="card reveal"><div class="ico">🔤</div><h3>ASCII</h3><p>Codificare veche, cu 128 de caractere: litere englezești, cifre, semne. Nu are ă, â, î, ș, ț.</p></div>
+      <div class="card reveal"><div class="ico">🌍</div><h3>Unicode</h3><p>Codificare universală: caracterele din aproape toate limbile, simboluri și emoji. „ș” = U+0219.</p></div>
+      <div class="card reveal"><div class="ico">💾</div><h3>UTF-8</h3><p>Felul în care se salvează textul Unicode: 1 octet pentru literele englezești, 2 pentru diacritice, până la 4 pentru emoji.</p></div>
+    </div>
+    <div class="callout reveal"><b>Atenție:</b> corect se scrie <b>ș, ț cu virgulă</b>, nu „ş, ţ” cu sedilă. Arată asemănător, dar sunt caractere diferite. Activează tastatura <b>Română (Standard)</b> din Setări › Oră și limbă.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Laborator: cum vede calculatorul textul</h2>
+    <div class="lab reveal">
+      <label for="enc">Scrie un cuvânt sau o propoziție</label>
+      <input id="enc" type="text" value="Știința țării" spellcheck="false" autocomplete="off">
+      <div class="chars" id="encc"></div>
+      <p class="sum" id="encs" aria-live="polite"></p>
+      <p class="alert" id="enca" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Stilurile și cuprinsul</h2>
+    <ol class="steps reveal">
+      <li><b>Aplic stilurile</b><span>Pornire › Stiluri: <b>Heading 1</b> pentru capitole, <b>Heading 2</b> pentru subcapitole, <b>Normal</b> pentru text.</span></li>
+      <li><b>Modific stilul, nu fiecare titlu</b><span>Clic dreapta pe stil › Modificare. Toate titlurile cu acel stil se schimbă deodată.</span></li>
+      <li><b>Verific structura</b><span>Vizualizare › Panou de navigare. Acolo apar doar titlurile cu stil.</span></li>
+      <li><b>Inserez cuprinsul</b><span>Referințe › Cuprins › Tabel automat 1. După modificări: Actualizare cuprins › Actualizare tabel întreg.</span></li>
+    </ol>
+    <div class="grid" style="margin-top:22px">
+      <div class="card reveal"><div class="ico">↵</div><h3>Pagină nouă</h3><p><b>Ctrl+Enter</b>, nu Enter de multe ori. Altfel, la prima modificare, capitolele se mută.</p></div>
+      <div class="card reveal"><div class="ico">⇥</div><h3>Retrageri</h3><p>Folosește indentarea primului rând, nu spații. Apasă ¶ ca să vezi ce ai scris de fapt.</p></div>
+      <div class="card reveal"><div class="ico">🖼️</div><h3>Legende</h3><p>Clic dreapta pe imagine › Inserare legendă. Numerotarea „Figura 1, 2…” se face automat.</p></div>
+      <div class="card reveal"><div class="ico">✍️</div><h3>Revizuire</h3><p>Urmărire modificări arată tot ce schimbă un coleg. Autorul acceptă sau respinge fiecare propunere.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Laborator: îmbinarea corespondenței</h2>
+    <p class="lead reveal">Alege un rând din tabelul Excel și vezi ce invitație creează Word din același model.</p>
+    <div class="lab reveal">
+      <div class="mm">
+        <div>
+          <div class="row"><strong>Documentul principal</strong></div>
+          <div class="doc"><h3>Invitație</h3><span class="fld">«Salut»</span> <span class="fld">«Titlu»</span> <span class="fld">«Nume»</span>,<br>vă invităm la prezentarea „Kitului digital al bobocului”, vineri, 12 iunie, ora 12, în laboratorul de informatică.<br>Cu stimă,<br>elevii clasei a IX-a B</div>
+        </div>
+        <div>
+          <div class="row"><strong>Sursa de date (Excel)</strong></div>
+          <div class="tablewrap"><table class="xl" id="mmt"><thead><tr><th>Salut</th><th>Titlu</th><th>Nume</th><th>Functia</th></tr></thead><tbody></tbody></table></div>
+          <div class="row" style="margin-top:12px"><button type="button" id="mmp">◀</button><span id="mmn" aria-live="polite"></span><button type="button" id="mmx">▶</button></div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:18px"><strong>Rezultatul îmbinării</strong></div>
+      <div class="doc" id="mmr" aria-live="polite"></div>
+    </div>
+    <div class="callout reveal"><b>Pașii în Word:</b> Corespondență › Pornire îmbinare corespondență › Scrisori › Selectare destinatari › Utilizare listă existentă › Inserare câmp de îmbinare › Examinare rezultate › Terminare și îmbinare.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Verifică-te</h2>
+    <details class="q reveal"><summary>Câți octeți ocupă cuvântul „țară” în UTF-8?</summary><p>6 octeți: „ț” și „ă” câte 2, „a” și „r” câte 1.</p></details>
+    <details class="q reveal"><summary>De ce nu apare un titlu în cuprinsul automat?</summary><p>Pentru că a fost formatat „de mână” (mărit, îngroșat), nu cu un stil de titlu, de exemplu Heading 1.</p></details>
+    <details class="q reveal"><summary>Ai mutat un capitol. Ce faci cu cuprinsul?</summary><p>Clic în cuprins › Actualizare cuprins › Actualizare tabel întreg.</p></details>
+    <details class="q reveal"><summary>Ce trei lucruri îți trebuie pentru îmbinarea corespondenței?</summary><p>Documentul principal (modelul), sursa de date (tabelul cu destinatarii) și câmpurile de îmbinare.</p></details>
+  </section>
+</main>
+<footer>Liceul Teoretic „Panait Cerna” Brăila · TIC · prof. Aura Ion</footer>
+<script src="assets/scenes.js"></script>
+<script src="assets/main.js"></script>
+<script>
+// Cum vede calculatorul textul
+(function(){
+  const inp=document.getElementById('enc'),box=document.getElementById('encc'),sum=document.getElementById('encs'),al=document.getElementById('enca');
+  const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const enc=new TextEncoder();
+  function show(){
+    const cs=[...inp.value].slice(0,40);let tot=0,ced=false;
+    box.innerHTML=cs.map(c=>{const cp=c.codePointAt(0),b=[...enc.encode(c)];tot+=b.length;const bad=cp===0x15F||cp===0x15E||cp===0x163||cp===0x162;if(bad)ced=true;
+      return `<div class="ch${bad?' warn':b.length>1?' n2':''}"><b>${c===' '?'␣':esc(c)}</b><code>${cp<128?cp:'U+'+cp.toString(16).toUpperCase().padStart(4,'0')}</code><small>${b.map(x=>x.toString(16).toUpperCase().padStart(2,'0')).join(' ')}</small></div>`;}).join('');
+    sum.innerHTML=cs.length?`<b>${cs.length}</b> caractere, <b>${tot}</b> octeți în UTF-8.`+([...inp.value].length>40?' (se afișează primele 40)':''):'Scrie ceva.';
+    al.textContent=ced?'Atenție: ai folosit ş sau ţ cu sedilă. Forma corectă în limba română este ș, ț cu virgulă dedesubt.':'';
+  }
+  inp.addEventListener('input',show);show();
+})();
+// Îmbinarea corespondenței
+(function(){
+  const D=[['Stimată','Doamna','Ionescu Maria','directoare'],['Stimate','Domnul','Marin Andrei','diriginte'],['Stimată','Doamna','Dobre Elena','părinte'],['Stimate','Domnul','Stan Mihai','părinte']];
+  const tb=document.querySelector('#mmt tbody'),r=document.getElementById('mmr'),n=document.getElementById('mmn');let i=0;
+  tb.innerHTML=D.map((d,k)=>`<tr data-k="${k}" style="cursor:pointer"><td>${d[0]}</td><td>${d[1]}</td><td>${d[2]}</td><td>${d[3]}</td></tr>`).join('');
+  function show(){[...tb.rows].forEach((tr,k)=>tr.classList.toggle('sel',k===i));const d=D[i];
+    r.innerHTML=`<h3>Invitație</h3><span class="val">${d[0]}</span> <span class="val">${d[1]}</span> <span class="val">${d[2]}</span>,<br>vă invităm la prezentarea „Kitului digital al bobocului”, vineri, 12 iunie, ora 12, în laboratorul de informatică.<br>Cu stimă,<br>elevii clasei a IX-a B`;
+    n.textContent=`Destinatarul ${i+1} din ${D.length}`;}
+  tb.addEventListener('click',e=>{const tr=e.target.closest('tr');if(tr){i=+tr.dataset.k;show();}});
+  document.getElementById('mmp').onclick=()=>{i=(i+D.length-1)%D.length;show();};
+  document.getElementById('mmx').onclick=()=>{i=(i+1)%D.length;show();};
+  show();
+})();
+</script>
+</body>
+</html>

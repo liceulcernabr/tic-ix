@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prezentări în PowerPoint – Clasa a IX-a | TIC</title>
+<meta name="description" content="Planificarea prezentării, coordonatorul de diapozitive, butoanele de acțiune și expunerea particularizată, explicate cu animație la scroll. TIC, clasa a IX-a, Liceul Teoretic „Panait Cerna” Brăila.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.lab{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.lab p{color:var(--muted)}
+.cc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:22px;align-items:center}
+@media (max-width:760px){.cc{grid-template-columns:1fr}}
+.pick{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:14px}
+.pick label{display:flex;align-items:center;gap:10px;font-weight:600}
+.pick input[type=color]{width:48px;height:36px;border:1px solid var(--line);border-radius:8px;background:none;padding:2px;cursor:pointer}
+.prev{aspect-ratio:16/9;border-radius:12px;display:flex;flex-direction:column;justify-content:center;padding:6% 8%;border:1px solid var(--line)}
+.prev h3{font-size:clamp(1.2rem,3vw,1.8rem);margin-bottom:6px}
+.prev p{font-size:clamp(.9rem,2vw,1.1rem);color:inherit !important}
+.ratio{font-size:2rem;font-weight:800}
+.verd{margin-top:6px}
+.ok{color:#5cc77c}.no{color:#ff8f7a}
+.presets{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.lab button{font:inherit;font-weight:600;cursor:pointer;border-radius:99px;padding:7px 14px;border:1px solid var(--line);background:#0a0f22;color:var(--ink)}
+.lab button:hover{border-color:var(--accent)}
+.lab button:focus-visible,.pick input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.show{aspect-ratio:16/9;max-width:640px;margin:0 auto;background:#fffaf6;color:#3a1408;border-radius:12px;padding:5% 7%;display:flex;flex-direction:column;justify-content:center;position:relative}
+.show h3{font-size:clamp(1.1rem,3vw,1.6rem);margin-bottom:14px}
+.show p{color:#5a3a2a !important}
+.show .num{position:absolute;right:14px;bottom:10px;font-size:.8rem;color:#8a7468}
+.show .opts{display:grid;gap:10px}
+.show .opts button{background:#f3e6de;color:#3a1408;border:0;text-align:left;border-radius:99px;padding:10px 18px}
+.show .opts button:hover{background:#ffd7c7}
+.show .nav{position:absolute;left:14px;bottom:10px;display:flex;gap:6px}
+.show .nav button{background:#3a1408;color:#fff;border:0;padding:5px 12px;font-size:.85rem}
+.trail{margin-top:12px;text-align:center;color:var(--muted);font-size:.92rem}
+.hidden-tag{display:inline-block;font-size:.72rem;background:#3a1408;color:#ffd7c7;border-radius:99px;padding:2px 8px;margin-left:6px}
+</style>
+</head>
+<body data-theme="prezentare">
+<div class="progress"></div>
+<header class="topbar"><a href="../../#u5">← Înapoi la manual</a><span class="tag">Clasa a IX-a · Prezentări în PowerPoint</span></header>
+
+<section class="hero" aria-label="Animație: diapozitivul clar, coordonatorul de diapozitive, butoanele de acțiune și expunerea particularizată">
+  <div class="hero-stage">
+    <canvas aria-hidden="true"></canvas>
+    <div class="hero-shade"></div>
+    <div class="hero-title">
+      <span class="kicker">TIC · Clasa a IX-a</span>
+      <h1>Prezentări în PowerPoint</h1>
+      <p>Derulează și urmărește cum se construiește o prezentare bună</p>
+    </div>
+    <div class="labels" data-for="canvas">
+      <div class="label" data-at=".04,.27"><span class="num">1/4</span><b>O idee pe diapozitiv</b><span>Un zid de text citit de pe ecran nu ajută pe nimeni. Păstrezi cuvintele-cheie și o imagine, iar restul îl spui tu.</span></div>
+      <div class="label" data-at=".27,.52"><span class="num">2/4</span><b>Coordonatorul de diapozitive</b><span>Pui sigla, fonturile și culorile o singură dată, în Slide Master. Apar pe toate diapozitivele.</span></div>
+      <div class="label" data-at=".52,.77"><span class="num">3/4</span><b>Butoanele de acțiune</b><span>Răspunsul B duce la diapozitivul 11, „Corect”, iar răspunsul A la diapozitivul 12, „Mai încearcă”. Diapozitivele de răspuns sunt ascunse.</span></div>
+      <div class="label" data-at=".77,1.01"><span class="num">4/4</span><b>Expunerea particularizată</b><span>Din aceeași prezentare alegi doar diapozitivele potrivite pentru alt public: „Părinți – 5 minute”.</span></div>
+    </div>
+    <div class="scroll-hint">DERULEAZĂ ↓</div>
+  </div>
+</section>
+
+<main>
+  <section class="block">
+    <h2 class="reveal">Planific înainte să deschid PowerPoint</h2>
+    <ol class="steps reveal">
+      <li><b>Mesajul principal</b><span>Îl scriu într-o singură propoziție: ce vreau să rețină publicul?</span></li>
+      <li><b>Publicul și timpul</b><span>Colegi, părinți sau juriu? 10 minute sau 5?</span></li>
+      <li><b>Storyboardul</b><span>Pe o foaie, câte un dreptunghi pentru fiecare diapozitiv, cu ideea și imaginea lui.</span></li>
+    </ol>
+    <div class="grid" style="margin-top:22px">
+      <div class="card reveal"><div class="ico">1️⃣</div><h3>O idee pe diapozitiv</h3><p>Cuvinte-cheie, nu paragrafe. Restul merge în notele pentru prezentator.</p></div>
+      <div class="card reveal"><div class="ico">🔠</div><h3>Text lizibil</h3><p>Cel mult două fonturi și minimum 24 pt pentru text.</p></div>
+      <div class="card reveal"><div class="ico">🌗</div><h3>Contrast bun</h3><p>Text închis pe fundal deschis sau invers. Verifică-l cu laboratorul de mai jos.</p></div>
+      <div class="card reveal"><div class="ico">✨</div><h3>Animații cu rost</h3><p>Doar când arată ordinea ideilor sau o transformare. Altfel, distrag atenția.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Laborator: verific contrastul</h2>
+    <p class="lead reveal">Alege culoarea textului și a fundalului. Pentru textul obișnuit, raportul trebuie să fie de cel puțin <b>4,5 : 1</b> (WCAG AA).</p>
+    <div class="lab reveal cc">
+      <div>
+        <div class="pick"><label>Text <input type="color" id="cf" value="#ffffff"></label><label>Fundal <input type="color" id="cb" value="#f2c14e"></label></div>
+        <div class="ratio" id="cr" aria-live="polite"></div>
+        <div class="verd" id="cv"></div>
+        <div class="presets">
+          <button type="button" data-f="#ffffff" data-b="#f2c14e">alb pe galben</button>
+          <button type="button" data-f="#1b2430" data-b="#fffaf6">negru pe crem</button>
+          <button type="button" data-f="#ff0000" data-b="#0000ff">roșu pe albastru</button>
+          <button type="button" data-f="#ffffff" data-b="#c43e1c">alb pe cărămiziu</button>
+        </div>
+      </div>
+      <div class="prev" id="cp"><h3>Identitatea digitală</h3><p>Tot ce postezi rămâne online.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Coordonatorul de diapozitive</h2>
+    <ol class="steps reveal">
+      <li><b>Deschid coordonatorul</b><span>Vizualizare › Coordonator diapozitive (Slide Master).</span></li>
+      <li><b>Lucrez pe primul diapozitiv, cel mare</b><span>Fonturile, culorile și sigla puse aici se aplică tuturor aspectelor de sub el.</span></li>
+      <li><b>Folosesc substituenții</b><span>Textul scris în casete desenate de mine nu preia formatul. Scriu în casetele existente.</span></li>
+      <li><b>Închid și verific</b><span>Închidere vizualizare coordonator, apoi trec prin toate diapozitivele.</span></li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Laborator: mini-chestionar cu butoane de acțiune</h2>
+    <p class="lead reveal">Așa funcționează o prezentare nelineară: butonul ales te duce la alt diapozitiv. Încearcă ambele răspunsuri.</p>
+    <div class="lab reveal">
+      <div class="show" id="sh" aria-live="polite"></div>
+      <p class="trail" id="tr"></p>
+    </div>
+    <div class="callout reveal"><b>În PowerPoint:</b> Inserare › Forme › Butoane de acțiune › desenezi butonul › Hyperlink la › Diapozitiv… Diapozitivele de răspuns le ascunzi din Expunere diapozitive › Ascundere diapozitiv.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Prezint cu încredere</h2>
+    <div class="grid">
+      <div class="card reveal"><div class="ico">🎯</div><h3>Expunerea particularizată</h3><p>Expunere diapozitive › Expunere particularizată › Nou. Alegi diapozitivele pentru „Părinți – 5 minute”.</p></div>
+      <div class="card reveal"><div class="ico">📝</div><h3>Notele</h3><p>Scrii ce vrei să spui în Note, sub fiecare diapozitiv. Pe proiector, Vizualizarea prezentator le arată doar ție.</p></div>
+      <div class="card reveal"><div class="ico">⏱️</div><h3>Repetiția</h3><p>Repetiție cronometrare: exersezi cu cronometrul și ajustezi.</p></div>
+      <div class="card reveal"><div class="ico">📄</div><h3>Varianta PDF</h3><p>Fișier › Export › Creare PDF, ca prezentarea să se deschidă pe orice calculator.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Verifică-te</h2>
+    <details class="q reveal"><summary>Unde pui sigla școlii ca să apară pe toate diapozitivele?</summary><p>În coordonatorul de diapozitive (Vizualizare › Coordonator diapozitive), pe primul diapozitiv, cel mare.</p></details>
+    <details class="q reveal"><summary>Ce raport de contrast minim se recomandă pentru textul obișnuit?</summary><p>4,5 : 1, conform recomandărilor WCAG AA.</p></details>
+    <details class="q reveal"><summary>De ce ascunzi diapozitivele de răspuns dintr-un chestionar?</summary><p>Ca să nu apară în derularea normală. Se deschid doar prin butoanele de acțiune.</p></details>
+    <details class="q reveal"><summary>Ce este o expunere particularizată?</summary><p>O selecție de diapozitive din aceeași prezentare, salvată cu un nume, pentru alt public sau alt timp.</p></details>
+  </section>
+</main>
+<footer>Liceul Teoretic „Panait Cerna” Brăila · TIC · prof. Aura Ion</footer>
+<script src="assets/scenes.js"></script>
+<script src="assets/main.js"></script>
+<script>
+// Contrastul (formula WCAG)
+(function(){
+  const f=document.getElementById('cf'),b=document.getElementById('cb'),r=document.getElementById('cr'),v=document.getElementById('cv'),p=document.getElementById('cp');
+  const lum=h=>{const c=[1,3,5].map(i=>parseInt(h.substr(i,2),16)/255).map(x=>x<=.03928?x/12.92:Math.pow((x+.055)/1.055,2.4));return .2126*c[0]+.7152*c[1]+.0722*c[2];};
+  function calc(){const a=lum(f.value),c=lum(b.value),k=(Math.max(a,c)+.05)/(Math.min(a,c)+.05);
+    p.style.color=f.value;p.style.background=b.value;r.textContent=k.toFixed(2).replace('.',',')+' : 1';
+    v.innerHTML=k>=7?'<span class="ok">✓ Excelent: se citește bine și de la distanță.</span>':k>=4.5?'<span class="ok">✓ Bun pentru text (WCAG AA).</span>':k>=3?'<span class="no">Doar pentru titluri mari. Pentru text, alege culori mai contrastante.</span>':'<span class="no">✗ Se citește greu. Schimbă una dintre culori.</span>';}
+  f.addEventListener('input',calc);b.addEventListener('input',calc);
+  document.querySelectorAll('.presets button').forEach(x=>x.onclick=()=>{f.value=x.dataset.f;b.value=x.dataset.b;calc();});
+  calc();
+})();
+// Mini-chestionar nelinear
+(function(){
+  const sh=document.getElementById('sh'),tr=document.getElementById('tr');let path=[];
+  const S={
+    9:{h:'Ce este un MOOC?',body:'<div class="opts"><button data-go="12">A  Un tip de virus informatic</button><button data-go="11">B  Un curs online deschis, cu mulți participanți</button><button data-go="12">C  O rețea de socializare</button></div>'},
+    10:{h:'Următoarea temă: platformele clasei',body:'<p>Aici continuă prezentarea în ordinea obișnuită.</p><div class="nav"><button data-go="9">◀ Înapoi la întrebare</button></div>'},
+    11:{h:'✓ Răspuns corect!',hid:1,body:'<p>MOOC = Massive Open Online Course.</p><div class="nav"><button data-go="10">Continuă ▶</button></div>'},
+    12:{h:'Mai încearcă',hid:1,body:'<p>Gândește-te la cursurile de pe Coursera sau edX.</p><div class="nav"><button data-go="9">↩ Revenire la întrebare</button></div>'}};
+  function go(n){path.push(n);const s=S[n];
+    sh.innerHTML=`<h3>${s.h}</h3>${s.body}<span class="num">Diapozitivul ${n}${s.hid?'<span class="hidden-tag">ascuns</span>':''}</span>`;
+    tr.textContent='Drumul tău: '+path.join(' → ');}
+  sh.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(+b.dataset.go);});
+  go(9);
+})();
+</script>
+</body>
+</html>

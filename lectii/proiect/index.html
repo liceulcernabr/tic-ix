@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kitul digital al bobocului – Clasa a IX-a | TIC</title>
+<meta name="description" content="Proiectul de recapitulare: cele 7 componente ale kitului, calendarul, feedbackul V1→V2 și predarea, explicate cu animație la scroll. TIC, clasa a IX-a, Liceul Teoretic „Panait Cerna” Brăila.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.lab{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.lab p{color:var(--muted)}
+.comp{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.comp .card{padding:20px}
+.letter{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;font-weight:800;color:#fff;margin-bottom:8px}
+.tag2{display:inline-block;font-size:.75rem;color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 50%,transparent);border-radius:99px;padding:2px 9px;margin-top:8px}
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media (max-width:760px){.tl{grid-template-columns:1fr 1fr}}
+.tl .card h3{color:var(--accent)}
+.ck{list-style:none;display:grid;gap:8px}
+.ck li label{display:flex;gap:12px;align-items:flex-start;background:#0a0f22;border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer}
+.ck li input{width:20px;height:20px;margin-top:2px;accent-color:var(--accent);flex:none}
+.ck li input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ck li.done label{border-color:color-mix(in srgb,var(--accent) 60%,transparent)}
+.ck li small{display:block;color:var(--muted)}
+.ck h3{margin:18px 0 8px;font-size:1rem;color:var(--accent)}
+.bar{height:12px;border-radius:99px;background:#0a0f22;border:1px solid var(--line);overflow:hidden;margin:14px 0 6px}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s}
+#ckp{font-weight:700}
+.lab button{font:inherit;font-weight:600;cursor:pointer;border-radius:99px;padding:7px 14px;border:1px solid var(--line);background:#0a0f22;color:var(--ink)}
+.lab button:hover{border-color:var(--accent)}
+.note{font-size:.85rem;color:var(--muted);margin-top:10px}
+</style>
+</head>
+<body data-theme="proiect">
+<div class="progress"></div>
+<header class="topbar"><a href="../../#u8">← Înapoi la manual</a><span class="tag">Clasa a IX-a · Proiect de recapitulare</span></header>
+
+<section class="hero" aria-label="Animație: componentele kitului, calendarul proiectului, feedbackul și predarea arhivei">
+  <div class="hero-stage">
+    <canvas aria-hidden="true"></canvas>
+    <div class="hero-shade"></div>
+    <div class="hero-title">
+      <span class="kicker">TIC · Clasa a IX-a</span>
+      <h1>Kitul digital al bobocului</h1>
+      <p>Derulează și urmărește proiectul de la idee la predare</p>
+    </div>
+    <div class="labels" data-for="canvas">
+      <div class="label" data-at=".04,.27"><span class="num">1/4</span><b>Cele 7 componente</b><span>Câte una pentru fiecare unitate a anului: ghidul, prezentarea, formularul, siguranța online, IA la teme, invitațiile și calculatorul.</span></div>
+      <div class="label" data-at=".27,.52"><span class="num">2/4</span><b>Patru ore în laborator</b><span>S33 începi ghidul și formularul, S34 îl termini și faci invitațiile, S35 faci prezentarea, S36 prezinți și predai.</span></div>
+      <div class="label" data-at=".52,.77"><span class="num">3/4</span><b>Feedback: V1 → V2</b><span>Un coleg îți lasă comentarii. Corectezi, apoi verifici fiecare criteriu din grila de evaluare.</span></div>
+      <div class="label" data-at=".77,1.01"><span class="num">4/4</span><b>Predarea</b><span>Toate fișierele într-o arhivă ZIP, cu numele tău, pe platforma clasei.</span></div>
+    </div>
+    <div class="scroll-hint">DERULEAZĂ ↓</div>
+  </div>
+</section>
+
+<main>
+  <section class="block">
+    <h2 class="reveal">Ce este proiectul</h2>
+    <p class="lead reveal">Anul viitor vin în liceu elevi noi. Tu realizezi, <b>individual</b>, un kit care îi ajută în prima săptămână. Cele mai reușite kituri ajung la <b>Ziua porților deschise</b> și pe platforma școlii.</p>
+    <div class="comp">
+      <div class="card reveal"><span class="letter" style="background:#3d7dff">A</span><h3>Ghidul bobocului</h3><p>4–6 pagini în Word: școala, platformele, reguli, sfaturi de învățare.</p><span class="tag2">U4 · stiluri, cuprins, legende</span></div>
+      <div class="card reveal"><span class="letter" style="background:#ff7a45">B</span><h3>Prezentarea de bun venit</h3><p>8–10 diapozitive cu un mini-chestionar interactiv.</p><span class="tag2">U5 · coordonator, butoane de acțiune</span></div>
+      <div class="card reveal"><span class="letter" style="background:#9b6bff">C</span><h3>Formularul</h3><p>„Ce te îngrijorează la liceu?”, 5–7 întrebări, plus e-mailul formal către diriginte.</p><span class="tag2">U1 · comunicare formală</span></div>
+      <div class="card reveal"><span class="letter" style="background:#ff4d6d">D</span><h3>Siguranța online</h3><p>O pagină în ghid cu 5 semne de phishing și 3 reguli pentru parole.</p><span class="tag2">U1, U7 · phishing, parole, 2FA</span></div>
+      <div class="card reveal"><span class="letter" style="background:#c77dff">E</span><h3>Cum folosesc corect IA la teme</h3><p>5 reguli, un prompt bun și verificarea a 3 afirmații.</p><span class="tag2">U2, U3 · prompt, verificare</span></div>
+      <div class="card reveal"><span class="letter" style="background:#2dbf6c">F</span><h3>Invitațiile</h3><p>Invitații personalizate pentru diriginte, directoare și 3 părinți.</p><span class="tag2">U4 · îmbinarea corespondenței</span></div>
+      <div class="card reveal"><span class="letter" style="background:#2ec4b6">G</span><h3>Calculatorul potrivit pentru liceu</h3><p>O configurație pentru un buget dat, justificată, și un checklist de securitate.</p><span class="tag2">U6, U7 · componente, securitate</span></div>
+    </div>
+    <div class="callout reveal"><b>De reținut:</b> poți cere și poți oferi feedback colegilor, dar lucrarea trebuie să fie a ta. Dacă folosești IA, declari unde și cum.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Calendarul proiectului</h2>
+    <div class="tl">
+      <div class="card reveal"><h3>S33</h3><p>Alegi structura kitului, începi ghidul (stiluri, cuprins) și formularul.</p></div>
+      <div class="card reveal"><h3>S34</h3><p>Termini ghidul: siguranța online, regulile IA, fișa calculatorului. Faci invitațiile.</p></div>
+      <div class="card reveal"><h3>S35</h3><p>Realizezi prezentarea și ceri feedback unui coleg (V1 → V2).</p></div>
+      <div class="card reveal"><h3>S36</h3><p>Prezinți kitul în 3–4 minute, predai fișierele, completezi reflecția.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Laborator: lista mea de verificare</h2>
+    <p class="lead reveal">Bifează ce ai terminat. Lista se păstrează doar în acest browser, ca să o găsești ora viitoare.</p>
+    <div class="lab reveal">
+      <div class="bar" aria-hidden="true"><span id="ckb"></span></div>
+      <p id="ckp" aria-live="polite"></p>
+      <div id="ckl"></div>
+      <button type="button" id="ckr" style="margin-top:14px">Golește lista</button>
+      <p class="note">Nimic nu se trimite nicăieri. Pe alt calculator, lista pornește de la zero.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Feedbackul colegului</h2>
+    <ol class="steps reveal">
+      <li><b>Ce e bine</b><span>„Cuprinsul e automat și ghidul are un antet frumos.”</span></li>
+      <li><b>Ce se poate îmbunătăți și cum</b><span>„Figura 2 nu are legendă: clic dreapta › Inserare legendă.”</span></li>
+      <li><b>O sugestie</b><span>„Adaugă în prezentare o întrebare despre orarul clopoțelului.”</span></li>
+    </ol>
+    <div class="callout reveal"><b>Predarea:</b> toate fișierele într-un singur folder arhivat, numit <code>Nume_Prenume_Kit_boboc.zip</code>, pe platforma clasei.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Verifică-te</h2>
+    <details class="q reveal"><summary>Ce unitate recapitulează componenta F, invitațiile?</summary><p>U4: îmbinarea corespondenței în Word, cu lista de invitați din Excel.</p></details>
+    <details class="q reveal"><summary>Ce faci cu comentariile primite pe versiunea V1?</summary><p>Le citești, corectezi ce e nevoie, răspunzi la comentarii și salvezi versiunea V2.</p></details>
+    <details class="q reveal"><summary>Ai folosit un chatbot pentru ideile de titlu. Ce trebuie să faci?</summary><p>Declari că ai folosit IA și la ce, de exemplu în reflecție: „Am cerut idei pentru titlul ghidului.”</p></details>
+    <details class="q reveal"><summary>Cum se numește arhiva pe care o predai?</summary><p><code>Nume_Prenume_Kit_boboc.zip</code>, cu numele și prenumele tău.</p></details>
+  </section>
+</main>
+<footer>Liceul Teoretic „Panait Cerna” Brăila · TIC · prof. Aura Ion</footer>
+<script src="assets/scenes.js"></script>
+<script src="assets/main.js"></script>
+<script>
+// Lista de verificare (păstrată doar în browserul elevului)
+(function(){
+  const G=[['A. Ghidul (Word)',['Stiluri Heading 1 / Heading 2 și cuprins automat','Antet cu numele școlii și „Pagina X din Y”','Cel puțin 2 imagini cu legendă','O secțiune pe două coloane; fiecare capitol pe pagină nouă']],
+    ['B. Prezentarea (PowerPoint)',['Coordonator cu siglă','Grafic sau imagini cu text alternativ','Mini-chestionar cu butoane de acțiune','Expunere particularizată de 3 minute']],
+    ['C–G. Celelalte componente',['Formularul cu 5–7 întrebări și e-mailul formal','Pagina „Siguranța online”','Regulile IA și verificarea a 3 afirmații','Invitațiile prin îmbinarea corespondenței','Fișa „Calculatorul potrivit pentru liceu”']],
+    ['Final',['Feedback primit și versiunea V2','Arhiva Nume_Prenume_Kit_boboc.zip predată','Reflecția completată']]];
+  const KEY='tic9-kit-checklist';let st={};
+  try{st=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){st={};}
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st));}catch(e){}};
+  const L=document.getElementById('ckl');let n=0;
+  L.innerHTML=G.map(([g,items])=>`<h3>${g}</h3><ul class="ck">${items.map(it=>{const id='c'+(n++);return `<li><label><input type="checkbox" data-id="${id}"><span>${it}</span></label></li>`;}).join('')}</ul>`).join('');
+  const boxes=[...L.querySelectorAll('input')];
+  function upd(){let d=0;boxes.forEach(b=>{b.checked=!!st[b.dataset.id];b.closest('li').classList.toggle('done',b.checked);if(b.checked)d++;});
+    document.getElementById('ckb').style.width=(d/boxes.length*100)+'%';
+    document.getElementById('ckp').textContent=`${d} din ${boxes.length} sarcini terminate`+(d===boxes.length?'. Kitul e gata! 🎉':'');}
+  L.addEventListener('change',e=>{const b=e.target;if(b.dataset.id){st[b.dataset.id]=b.checked;save();upd();}});
+  document.getElementById('ckr').onclick=()=>{st={};save();upd();};
+  upd();
+})();
+</script>
+</body>
+</html>

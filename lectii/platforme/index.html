@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Platforme de învățare – Clasa a IX-a | TIC</title>
+<meta name="description" content="Platforma clasei, cursuri online, GeoGebra, matricea de decizie și învățarea prin testare, explicate cu animație la scroll. TIC, clasa a IX-a, Liceul Teoretic „Panait Cerna” Brăila.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.lab{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.lab p{color:var(--muted)}
+.gg{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:22px;align-items:center}
+@media (max-width:760px){.gg{grid-template-columns:1fr}}
+.gg svg{width:100%;height:auto;background:#f7fbfa;border-radius:12px;display:block}
+.sl{display:grid;grid-template-columns:28px 1fr 48px;gap:10px;align-items:center;margin:14px 0}
+.sl b{font-family:ui-monospace,Consolas,monospace;font-size:1.1rem;color:var(--accent)}
+.sl output{text-align:right;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.fx{font-family:ui-monospace,Consolas,monospace;font-size:1.15rem;margin-bottom:6px}
+.obs{margin-top:10px;color:var(--muted);min-height:3em}
+.tablewrap{overflow-x:auto}
+table.m{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+table.m th,table.m td{border-bottom:1px solid var(--line);padding:10px 8px;text-align:center}
+table.m th:first-child,table.m td:first-child{text-align:left}
+table.m th{color:var(--muted);font-weight:600;font-size:.9rem}
+table.m select{font:inherit;background:#0a0f22;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:4px 6px}
+table.m select:focus-visible{outline:3px solid var(--accent)}
+table.m tfoot td{font-weight:800;font-size:1.1rem}
+td.win{color:#04201d;background:var(--accent);border-radius:8px}
+</style>
+</head>
+<body data-theme="platforme">
+<div class="progress"></div>
+<header class="topbar"><a href="../../#u3">← Înapoi la manual</a><span class="tag">Clasa a IX-a · Platforme de învățare</span></header>
+
+<section class="hero" aria-label="Animație: tema predată pe platformă, GeoGebra, matricea de decizie și curba uitării">
+  <div class="hero-stage">
+    <canvas aria-hidden="true"></canvas>
+    <div class="hero-shade"></div>
+    <div class="hero-title">
+      <span class="kicker">TIC · Clasa a IX-a</span>
+      <h1>Aplicații și platforme pentru învățare</h1>
+      <p>Derulează și află cum înveți mai inteligent</p>
+    </div>
+    <div class="labels" data-for="canvas">
+      <div class="label" data-at=".04,.27"><span class="num">1/4</span><b>Platforma clasei</b><span>Deschizi tema, atașezi fișierul corect și apeși <b>Predă</b>. Starea devine „Predată”. Dacă mai vrei să schimbi ceva, anulezi predarea.</span></div>
+      <div class="label" data-at=".27,.52"><span class="num">2/4</span><b>Aplicațiile interactive</b><span>În GeoGebra miști glisorul <b>b</b> și parabola urcă sau coboară. Cu <b>a</b> negativ, se întoarce. Vezi efectul pe loc.</span></div>
+      <div class="label" data-at=".52,.77"><span class="num">3/4</span><b>Matricea de decizie</b><span>Fiecare criteriu are o pondere. Înmulțești nota cu ponderea și aduni. Câștigă scorul cel mai mare, nu prima impresie.</span></div>
+      <div class="label" data-at=".77,1.01"><span class="num">4/4</span><b>Te testezi, nu doar recitești</b><span>Dacă recitești o dată, uiți repede. Dacă te testezi după 1, 3 și 7 zile, îți amintești mult mai mult.</span></div>
+    </div>
+    <div class="scroll-hint">DERULEAZĂ ↓</div>
+  </div>
+</section>
+
+<main>
+  <section class="block">
+    <h2 class="reveal">Unde învăț online</h2>
+    <div class="grid">
+      <div class="card reveal"><div class="ico">🏫</div><h3>Platforma clasei</h3><p>Teme, materiale, note și mesaje: Google Classroom, Microsoft Teams, Moodle.</p></div>
+      <div class="card reveal"><div class="ico">🎓</div><h3>Cursuri online (MOOC)</h3><p>Lecții video și teste, la ritmul tău, uneori cu certificat: Coursera, edX, Cisco Networking Academy.</p></div>
+      <div class="card reveal"><div class="ico">▶️</div><h3>Tutoriale</h3><p>Explicații pas cu pas, în clipuri sau în ghidurile de pe site-urile aplicațiilor.</p></div>
+      <div class="card reveal"><div class="ico">🧪</div><h3>Aplicații interactive</h3><p>Modifici ceva și vezi imediat efectul: GeoGebra la matematică, PhET la fizică și chimie.</p></div>
+    </div>
+    <div class="callout reveal"><b>MOOC</b> vine din engleză: <i>Massive Open Online Course</i>, adică un curs online deschis, cu foarte mulți participanți.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Predau o temă pe platformă</h2>
+    <ol class="steps reveal">
+      <li><b>Deschid tema</b><span>Clasa › fila <i>Activitate la curs</i> › tema. Citesc cerința și termenul.</span></li>
+      <li><b>Atașez fișierul</b><span><i>Adaugă sau creează</i> › <i>Fișier</i>. Verific dacă am ales fișierul corect, cu numele meu.</span></li>
+      <li><b>Apăs Predă</b><span>Confirm. Starea devine „Predată”. Profesorul vede ora predării.</span></li>
+      <li><b>Corectez, dacă e nevoie</b><span><i>Anulează predarea</i> › modific › <i>Predă</i> din nou, înainte de termen.</span></li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Laborator: ca în GeoGebra</h2>
+    <p class="lead reveal">Mișcă glisoarele și urmărește graficul funcției. Notează ce face fiecare parametru.</p>
+    <div class="lab reveal gg">
+      <svg id="ggs" viewBox="-6 -6 12 12" role="img" aria-label="Graficul funcției f(x) = a·x² + b">
+        <g stroke="#e1ecea" stroke-width=".03" id="grid"></g>
+        <line x1="-6" y1="0" x2="6" y2="0" stroke="#7b8a88" stroke-width=".05"/>
+        <line x1="0" y1="-6" x2="0" y2="6" stroke="#7b8a88" stroke-width=".05"/>
+        <path id="ggp" fill="none" stroke="#14a3a3" stroke-width=".12" stroke-linejoin="round"/>
+        <circle id="ggv" r=".18" fill="#14a3a3"/>
+      </svg>
+      <div>
+        <div class="fx" id="ggf">f(x) = 1·x² + 0</div>
+        <label class="sl"><b>a</b><input type="range" id="ga" min="-3" max="3" step="0.1" value="1"><output id="gao">1,0</output></label>
+        <label class="sl"><b>b</b><input type="range" id="gb" min="-4" max="4" step="0.1" value="0"><output id="gbo">0,0</output></label>
+        <p class="obs" id="ggo" aria-live="polite">Mișcă un glisor.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Laborator: matricea de decizie</h2>
+    <p class="lead reveal">Alegi între două aplicații de învățat. Schimbă ponderile după ce contează pentru tine și urmărește cum se schimbă câștigătorul.</p>
+    <div class="lab reveal tablewrap">
+      <table class="m" id="mx">
+        <thead><tr><th>Criteriu</th><th>Pondere</th><th>Aplicația A</th><th>Aplicația B</th></tr></thead>
+        <tbody></tbody>
+        <tfoot><tr><td>Scor total</td><td></td><td id="ta"></td><td id="tb"></td></tr></tfoot>
+      </table>
+      <p class="obs" id="mxo" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Învăț mai eficient</h2>
+    <div class="grid">
+      <div class="card reveal"><div class="ico">❓</div><h3>Mă testez</h3><p>După ce înveți, închide caietul și răspunde la întrebări. Testarea fixează mai bine decât recitirea.</p></div>
+      <div class="card reveal"><div class="ico">📅</div><h3>Repet la câteva zile</h3><p>Repetă după o zi, după trei zile, după o săptămână. Pauzele ajută memoria.</p></div>
+      <div class="card reveal"><div class="ico">🤖</div><h3>IA, ca partener de antrenament</h3><p>Învață întâi din manual, apoi cere chatbotului întrebări de verificare. Nu-i cere să-ți rezolve tema.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Verifică-te</h2>
+    <details class="q reveal"><summary>Ce faci dacă ai predat o temă cu fișierul greșit?</summary><p>Apeși <i>Anulează predarea</i>, înlocuiești fișierul și predai din nou, înainte de termen.</p></details>
+    <details class="q reveal"><summary>Ce face parametrul b în f(x) = x² + b?</summary><p>Mută parabola în sus (b pozitiv) sau în jos (b negativ), fără să-i schimbe forma.</p></details>
+    <details class="q reveal"><summary>Cum calculezi scorul unei variante în matricea de decizie?</summary><p>Înmulțești nota fiecărui criteriu cu ponderea lui și aduni rezultatele.</p></details>
+    <details class="q reveal"><summary>Ce funcționează mai bine: să recitești lecția de trei ori sau să te testezi de trei ori, la câteva zile distanță?</summary><p>Să te testezi, la câteva zile distanță. Efortul de a-ți aminti fixează informația.</p></details>
+  </section>
+</main>
+<footer>Liceul Teoretic „Panait Cerna” Brăila · TIC · prof. Aura Ion</footer>
+<script src="assets/scenes.js"></script>
+<script src="assets/main.js"></script>
+<script>
+// GeoGebra în miniatură (axa y este întoarsă în SVG)
+(function(){
+  const g=document.getElementById('grid');
+  for(let i=-6;i<=6;i++)g.insertAdjacentHTML('beforeend',`<line x1="${i}" y1="-6" x2="${i}" y2="6"/><line x1="-6" y1="${i}" x2="6" y2="${i}"/>`);
+  const A=document.getElementById('ga'),Bs=document.getElementById('gb'),path=document.getElementById('ggp'),v=document.getElementById('ggv');
+  const f=document.getElementById('ggf'),o=document.getElementById('ggo'),ao=document.getElementById('gao'),bo=document.getElementById('gbo');
+  const n=x=>x.toFixed(1).replace('.',',');
+  let last='';
+  function draw(e){
+    const a=+A.value,b=+Bs.value;let d='';
+    for(let x=-6;x<=6.001;x+=.1){const y=a*x*x+b;d+=(d?'L':'M')+x.toFixed(2)+' '+(-Math.max(-50,Math.min(50,y))).toFixed(2);}
+    path.setAttribute('d',d);v.setAttribute('cx',0);v.setAttribute('cy',-b);
+    ao.textContent=n(a);bo.textContent=n(b);f.textContent=`f(x) = ${n(a)}·x² ${b<0?'−':'+'} ${n(Math.abs(b))}`;
+    if(e&&e.target===Bs)last='b mută parabola pe verticală: vârful este în punctul (0; '+n(b)+').';
+    if(e&&e.target===A)last=a===0?'Cu a = 0 nu mai e parabolă: graficul devine o dreaptă orizontală.':a>0?`a pozitiv: parabola are „brațele” în sus. Cu cât a e mai mare, cu atât e mai îngustă.`:`a negativ: parabola se întoarce, cu „brațele” în jos.`;
+    if(last)o.textContent=last;
+  }
+  A.addEventListener('input',draw);Bs.addEventListener('input',draw);draw();
+})();
+// Matricea de decizie
+(function(){
+  const R=[['Explicații clare',3,4,3],['Exerciții interactive',2,3,5],['Gratuită',2,5,4],['În limba română',1,2,5]];
+  const tb=document.querySelector('#mx tbody'),ta=document.getElementById('ta'),tbb=document.getElementById('tb'),o=document.getElementById('mxo');
+  tb.innerHTML=R.map((r,i)=>`<tr><td>${r[0]}</td><td><select data-i="${i}" aria-label="Ponderea pentru ${r[0]}">${[1,2,3].map(k=>`<option${k===r[1]?' selected':''}>${k}</option>`).join('')}</select></td><td id="a${i}"></td><td id="b${i}"></td></tr>`).join('');
+  function calc(){let sa=0,sb=0;
+    R.forEach((r,i)=>{const w=+tb.querySelector(`[data-i="${i}"]`).value;sa+=r[2]*w;sb+=r[3]*w;
+      document.getElementById('a'+i).textContent=`${r[2]} × ${w} = ${r[2]*w}`;document.getElementById('b'+i).textContent=`${r[3]} × ${w} = ${r[3]*w}`;});
+    ta.textContent=sa;tbb.textContent=sb;ta.className=sa>sb?'win':'';tbb.className=sb>sa?'win':'';
+    o.textContent=sa===sb?'Egalitate: adaugă un criteriu nou ca să decizi.':`Câștigă aplicația ${sa>sb?'A':'B'} (${Math.max(sa,sb)} puncte față de ${Math.min(sa,sb)}).`;}
+  tb.addEventListener('change',calc);calc();
+})();
+</script>
+</body>
+</html>
