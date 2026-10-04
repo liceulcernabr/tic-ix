@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Siguranța online – Clasa a IX-a | TIC</title>
+<meta name="description" content="Phishing, parole, autentificare în doi pași și HTTPS, explicate cu animație la scroll. TIC, clasa a IX-a, Liceul Teoretic „Panait Cerna” Brăila.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.sim{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;margin-bottom:16px}
+.sim .from{font-size:.85rem;color:var(--muted)}
+.sim .from code{color:var(--ink)}
+.sim h3{font-size:1.05rem;margin:6px 0}
+.sim p{color:var(--muted);font-size:.97rem}
+.sim .btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.sim button,.pw button{font:inherit;font-weight:600;cursor:pointer;border-radius:99px;padding:8px 18px;border:1px solid var(--line);background:#0a0f22;color:var(--ink)}
+.sim button:hover,.pw button:hover{border-color:var(--accent)}
+.sim button:focus-visible,.pw input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sim .fb{margin-top:12px;font-size:.95rem;min-height:1.4em}
+.sim .fb.ok{color:#2dd4a0}.sim .fb.no{color:#ff8fa3}
+.pw{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.pw label{font-weight:600;display:block;margin-bottom:8px}
+.pw input{width:100%;font:inherit;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:#0a0f22;color:var(--ink)}
+.meter{height:10px;border-radius:99px;background:#0a0f22;border:1px solid var(--line);margin:14px 0 8px;overflow:hidden}
+.meter span{display:block;height:100%;width:0;transition:width .3s,background .3s}
+.pw ul{list-style:none;display:grid;gap:4px;margin-top:10px;color:var(--muted);font-size:.95rem}
+.pw li.ok{color:#2dd4a0}
+.pw .note{font-size:.85rem;color:var(--muted);margin-top:12px}
+</style>
+</head>
+<body data-theme="securitate">
+<div class="progress"></div>
+<header class="topbar"><a href="../../#u7">← Înapoi la manual</a><span class="tag">Clasa a IX-a · Siguranța online</span></header>
+
+<section class="hero" aria-label="Animație: datele tale, de la expuse la protejate">
+  <div class="hero-stage">
+    <canvas aria-hidden="true"></canvas>
+    <div class="hero-shade"></div>
+    <div class="hero-title">
+      <span class="kicker">TIC · Clasa a IX-a</span>
+      <h1>Siguranța online</h1>
+      <p>Derulează și închide lacătul peste datele tale</p>
+    </div>
+    <div class="labels" data-for="canvas">
+      <div class="label" data-at=".05,.3"><span class="num">1/4</span><b>Date expuse</b><span>Pe <code>http://</code> sau pe un Wi-Fi public deschis, ce trimiți poate fi citit de alții din aceeași rețea.</span></div>
+      <div class="label" data-at=".3,.55"><span class="num">2/4</span><b>Lacătul se închide: HTTPS</b><span>Conexiunea <code>https://</code> criptează datele dintre tine și site. Pe drum ajung doar caractere fără sens.</span></div>
+      <div class="label" data-at=".55,.8"><span class="num">3/4</span><b>Cheia ești tu</b><span>O parolă lungă și unică plus autentificarea în doi pași țin contul închis chiar dacă parola scapă.</span></div>
+      <div class="label" data-at=".8,1.01"><span class="num">4/4</span><b>Atenție la capcană</b><span>Și site-urile false pot avea lacăt. Lacătul arată că datele sunt criptate, nu că site-ul e cinstit: verifică adresa.</span></div>
+    </div>
+    <div class="scroll-hint">DERULEAZĂ ↓</div>
+  </div>
+</section>
+
+<main>
+  <section class="block">
+    <h2 class="reveal">Cele patru chei ale siguranței</h2>
+    <p class="lead reveal">Majoritatea conturilor sparte nu sunt atacuri „de film”. Sunt parole refolosite, linkuri apăsate în grabă și aplicații neactualizate.</p>
+    <div class="grid">
+      <div class="card reveal"><div class="ico">🔑</div><h3>Parole puternice</h3><p>Cel puțin 12–15 caractere, câte una pentru fiecare cont. Cel mai ușor: o frază din 4 cuvinte, ținută într-un manager de parole.</p></div>
+      <div class="card reveal"><div class="ico">📲</div><h3>Autentificarea în doi pași (2FA)</h3><p>Pe lângă parolă, un cod din aplicație sau o cheie de acces (passkey). Activeaz-o mai întâi la e-mail.</p></div>
+      <div class="card reveal"><div class="ico">🎣</div><h3>Phishing</h3><p>Mesaje care te grăbesc să dai clic, parola sau un cod. Nicio firmă serioasă nu îți cere parola prin mesaj.</p></div>
+      <div class="card reveal"><div class="ico">🔄</div><h3>Actualizări</h3><p>Actualizările repară breșe de securitate. Pornește actualizările automate pe telefon, calculator și aplicații.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Semnele unui mesaj de phishing</h2>
+    <ol class="steps reveal">
+      <li><b>Expeditorul sau adresa nu se potrivesc</b><span>„instagram-securitate.help” nu este Instagram. Citește adresa de la dreapta la stânga, până la primul punct: domeniul real este cel dinaintea lui .com, .ro etc.</span></li>
+      <li><b>Te grăbește sau te sperie</b><span>„Contul tău va fi șters în 24 de ore!” Presiunea timpului te face să nu mai verifici.</span></li>
+      <li><b>Îți cere date sau coduri</b><span>Parola, codul primit prin SMS, datele cardului. Codul 2FA nu se dă nimănui, nici „colegului de la suport”.</span></li>
+      <li><b>Premiu prea frumos ca să fie adevărat</b><span>iPhone câștigat la o tombolă la care nu te-ai înscris, skinuri gratuite, bani ușori.</span></li>
+      <li><b>Link sau atașament neașteptat</b><span>Ține mouse-ul deasupra linkului (sau apasă lung pe telefon) și citește adresa înainte să deschizi.</span></li>
+    </ol>
+    <div class="callout reveal"><b>Ce faci dacă ai apăsat deja:</b> schimbă imediat parola contului (de pe site-ul oficial, nu din link), activează 2FA, deconectează celelalte sesiuni și spune unui adult sau profesorului.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Phishing sau nu?</h2>
+    <p class="lead reveal">Citește fiecare mesaj și decide. Explicația apare după ce alegi.</p>
+    <div class="sim reveal" data-ans="phish" data-why="Domeniul real este „insta-verify.top”, nu instagram.com. În plus, te grăbește și îți cere parola.">
+      <div class="from">De la: <code>Instagram Support &lt;no-reply@insta-verify.top&gt;</code></div>
+      <h3>⚠ Contul tău va fi dezactivat în 12 ore</h3>
+      <p>Am detectat activitate suspectă. Confirmă-ți parola aici ca să-ți păstrezi contul: <code>insta-verify.top/login</code></p>
+      <div class="btns"><button type="button" data-v="phish">Phishing</button><button type="button" data-v="ok">Mesaj sigur</button></div><div class="fb" aria-live="polite"></div>
+    </div>
+    <div class="sim reveal" data-ans="ok" data-why="Mesajul vine din aplicația oficială a școlii, nu cere date și nu conține linkuri. Informația poate fi verificată și la clasă.">
+      <div class="from">De la: <code>Diriginta</code>, în platforma clasei</div>
+      <h3>Mâine, ora de TIC se ține în laboratorul 2</h3>
+      <p>Vă rog să aveți la voi stick-ul cu proiectul. Mulțumesc!</p>
+      <div class="btns"><button type="button" data-v="phish">Phishing</button><button type="button" data-v="ok">Mesaj sigur</button></div><div class="fb" aria-live="polite"></div>
+    </div>
+    <div class="sim reveal" data-ans="phish" data-why="Nimeni de la suport nu îți cere codul primit prin SMS. Cine are codul îți poate prelua contul, chiar dacă nu îți știe parola.">
+      <div class="from">De la: un număr necunoscut, pe WhatsApp</div>
+      <h3>Salut! Ți-am trimis din greșeală un cod de 6 cifre prin SMS</h3>
+      <p>Poți să mi-l dai înapoi, te rog? E urgent, altfel îmi blochează contul 🙏</p>
+      <div class="btns"><button type="button" data-v="phish">Phishing</button><button type="button" data-v="ok">Mesaj sigur</button></div><div class="fb" aria-live="polite"></div>
+    </div>
+    <div class="sim reveal" data-ans="phish" data-why="Adresa folosește cifra 0 în loc de litera o („g00gle”). Lacătul HTTPS nu ajută: și site-urile false pot avea certificat.">
+      <div class="from">Link primit într-un comentariu</div>
+      <h3>🎁 Câștigă 1000 de diamante gratuit!</h3>
+      <p>Autentifică-te cu contul Google: <code>https://accounts.g00gle-login.com</code></p>
+      <div class="btns"><button type="button" data-v="phish">Phishing</button><button type="button" data-v="ok">Mesaj sigur</button></div><div class="fb" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Testează o parolă inventată</h2>
+    <p class="lead reveal">Nu scrie aici parola ta adevărată. Inventează una ca exemplu și vezi ce îi lipsește. Nimic nu se salvează și nimic nu se trimite.</p>
+    <div class="pw reveal">
+      <label for="pwi">Parolă de probă</label>
+      <input id="pwi" type="text" autocomplete="off" spellcheck="false" placeholder="de exemplu: Brăila-ploaie-ceai-77">
+      <div class="meter" aria-hidden="true"><span id="pwm"></span></div>
+      <div id="pwv" aria-live="polite">Scrie ceva ca să vezi evaluarea.</div>
+      <ul id="pwl">
+        <li data-k="len">cel puțin 12 caractere</li>
+        <li data-k="len15">cel puțin 15 caractere (și mai bine)</li>
+        <li data-k="mix">litere mari și mici</li>
+        <li data-k="num">cel puțin o cifră sau un simbol</li>
+        <li data-k="common">nu conține cuvinte banale (parola, 123456, qwerty, numele școlii singur)</li>
+      </ul>
+      <p class="note">Lungimea contează cel mai mult: „ceai-munte-tren-violet” e mai greu de ghicit decât „P@r0l4!”.</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Urma ta digitală</h2>
+    <div class="grid">
+      <div class="card reveal"><div class="ico">👣</div><h3>Ce postezi rămâne</h3><p>Capturile de ecran, distribuirile și arhivele păstrează postările și după ce le ștergi.</p></div>
+      <div class="card reveal"><div class="ico">📍</div><h3>Date personale</h3><p>Adresa, școala, orarul și locația în timp real ajută un necunoscut să te găsească. Verifică setările de confidențialitate.</p></div>
+      <div class="card reveal"><div class="ico">🤝</div><h3>Hărțuirea online</h3><p>Nu răspunde, fă capturi de ecran, blochează și raportează. Spune unui adult de încredere. Poți suna gratuit la 116 111 (Telefonul copilului).</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Verifică-te</h2>
+    <details class="q reveal"><summary>Un site are lacătul HTTPS. Înseamnă că este sigur să îmi introduc parola?</summary><p>Nu neapărat. HTTPS arată doar că datele sunt criptate pe drum. Un site fals poate avea și el lacăt, așa că verifici întâi adresa exactă.</p></details>
+    <details class="q reveal"><summary>De ce nu folosesc aceeași parolă peste tot?</summary><p>Dacă un site e spart și parola ajunge publică, atacatorii o încearcă automat pe toate celelalte conturi (e-mail, rețele sociale, jocuri).</p></details>
+    <details class="q reveal"><summary>Ce face autentificarea în doi pași?</summary><p>Cere, pe lângă parolă, o a doua dovadă: un cod din aplicație, o notificare sau o cheie de acces. Cine îți află doar parola nu poate intra în cont.</p></details>
+    <details class="q reveal"><summary>Cineva îți cere „din greșeală” codul primit prin SMS. Ce faci?</summary><p>Nu îl dai. Este o tentativă de preluare a contului. Ignoră mesajul, blochează numărul și, dacă e un prieten, sună-l să verifici: contul lui poate fi deja spart.</p></details>
+  </section>
+</main>
+<footer>Liceul Teoretic „Panait Cerna” Brăila · TIC · prof. Aura Ion</footer>
+<script src="assets/scenes.js"></script>
+<script src="assets/main.js"></script>
+<script>
+// Phishing sau nu?
+document.querySelectorAll('.sim').forEach(s=>{
+  const fb=s.querySelector('.fb');
+  s.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{
+    const ok=b.dataset.v===s.dataset.ans;
+    fb.className='fb '+(ok?'ok':'no');
+    fb.textContent=(ok?'Corect! ':'Mai gândește-te. ')+s.dataset.why;
+  }));
+});
+// Parola de probă (nu se salvează nicăieri)
+(function(){
+  const i=document.getElementById('pwi'),m=document.getElementById('pwm'),v=document.getElementById('pwv');
+  const items=[...document.querySelectorAll('#pwl li')];
+  const banal=/parol|password|123456|qwerty|azerty|111111|abc123|cerna|liceu/i;
+  i.addEventListener('input',()=>{
+    const s=i.value, n=[...s].length;
+    const c={len:n>=12,len15:n>=15,mix:/\p{Ll}/u.test(s)&&/\p{Lu}/u.test(s),num:/[\d\W_]/.test(s),common:n>0&&!banal.test(s)};
+    items.forEach(li=>li.classList.toggle('ok',c[li.dataset.k]));
+    let sc=Math.min(n,20)/20*60+(c.mix?12:0)+(c.num?12:0)+(c.common?16:-30);
+    if(!n)sc=0; sc=Math.max(4,Math.min(100,sc));
+    const [t,col]=!n?['Scrie ceva ca să vezi evaluarea.','#555']:sc<40?['Slabă: ar fi ghicită repede.','#ff4d6d']:sc<70?['Medie: mai adaugă lungime.','#ffbe0b']:['Puternică. Acum folosește-o doar pentru un singur cont.','#2dd4a0'];
+    m.style.width=(n?sc:0)+'%';m.style.background=col;v.textContent=t;
+  });
+})();
+</script>
+</body>
+</html>
