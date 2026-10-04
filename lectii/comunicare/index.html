@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Comunicare digitală – Clasa a IX-a | TIC</title>
+<meta name="description" content="Canale de comunicare, e-mailul formal, Cc și Bcc, neticheta și colaborarea, explicate cu animație la scroll. TIC, clasa a IX-a, Liceul Teoretic „Panait Cerna” Brăila.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.lab{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.lab p{color:var(--muted)}
+.lab button{font:inherit;font-weight:600;cursor:pointer;border-radius:99px;padding:8px 16px;border:1px solid var(--line);background:#0a0f22;color:var(--ink)}
+.lab button:hover{border-color:var(--accent)}
+.lab button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#06122a}
+.lab button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.sit{border-top:1px solid var(--line);padding:16px 0}
+.sit:first-child{border-top:0;padding-top:0}
+.sit h3{font-size:1rem;margin-bottom:10px}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.fb{margin-top:10px;font-size:.95rem;min-height:1.3em}
+.fb.ok{color:#2dd4a0}.fb.no{color:#ff8fa3}
+.mail{background:#f4f7fc;color:#1a2230;border-radius:12px;padding:18px 20px;font-size:.98rem;line-height:1.7}
+.mail .ln{display:block;border-radius:6px;padding:2px 6px;margin:0 -6px;cursor:pointer;border:2px solid transparent}
+.mail .ln:hover{background:#e5ecfa}
+.mail .ln:focus-visible{outline:3px solid var(--accent2)}
+.mail .ln.found{border-color:#e0453a;background:#fde8e8}
+.mail .ln.okf{border-color:#1e8c4e;background:#e6f6ec}
+.mail small{color:#6b7688}
+.score{margin-top:12px;color:var(--muted)}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:700px){.vs{grid-template-columns:1fr}}
+.vs .card h3{display:flex;gap:8px;align-items:center}
+.bad{color:#ff8fa3}.good{color:#2dd4a0}
+</style>
+</head>
+<body data-theme="comunicare">
+<div class="progress"></div>
+<header class="topbar"><a href="../../#u1">← Înapoi la manual</a><span class="tag">Clasa a IX-a · Comunicare digitală</span></header>
+
+<section class="hero" aria-label="Animație: alegerea canalului, scrierea unui e-mail formal, Cc și Bcc, lucrul într-un document comun">
+  <div class="hero-stage">
+    <canvas aria-hidden="true"></canvas>
+    <div class="hero-shade"></div>
+    <div class="hero-title">
+      <span class="kicker">TIC · Clasa a IX-a</span>
+      <h1>Comunicare și colaborare digitală</h1>
+      <p>Derulează și urmărește drumul unui mesaj</p>
+    </div>
+    <div class="labels" data-for="canvas">
+      <div class="label" data-at=".04,.27"><span class="num">1/4</span><b>Alegi canalul</b><span>Pentru o profesoară, un mesaj oficial care nu e urgent: <b>e-mailul</b>. Chatul e pentru prieteni, apelul video pentru discuții pe loc.</span></div>
+      <div class="label" data-at=".27,.52"><span class="num">2/4</span><b>Scrii un e-mail formal</b><span>Subiect clar, adresare, conținut scurt, încheiere și semnătură cu numele și clasa.</span></div>
+      <div class="label" data-at=".52,.77"><span class="num">3/4</span><b>Cc sau Bcc?</b><span>La Cc, toți destinatarii văd adresele celorlalți. La Bcc, adresele rămân ascunse. Așa protejezi datele oamenilor care nu se cunosc.</span></div>
+      <div class="label" data-at=".77,1.01"><span class="num">4/4</span><b>Lucrați împreună</b><span>Documentul comun se editează în același timp. Dai doar drepturile necesare, iar feedbackul e constructiv: ce e bine, ce se poate îmbunătăți și cum.</span></div>
+    </div>
+    <div class="scroll-hint">DERULEAZĂ ↓</div>
+  </div>
+</section>
+
+<main>
+  <section class="block">
+    <h2 class="reveal">Cum comunicăm digital</h2>
+    <p class="lead reveal">E-mail, chat, forum, rețele sociale, apeluri video, platforma clasei. Fiecare are rostul lui. Alegi în funcție de <b>destinatar</b>, <b>urgență</b> și <b>cât de oficial</b> e mesajul.</p>
+    <div class="grid">
+      <div class="card reveal"><div class="ico">⏱️</div><h3>Sincron sau asincron</h3><p><b>Sincron:</b> toți sunteți conectați în același timp (apel video, chat live). <b>Asincron:</b> fiecare răspunde când poate (e-mail, forum).</p></div>
+      <div class="card reveal"><div class="ico">🌍</div><h3>Public sau privat</h3><p>O postare publică o poate vedea oricine. Un mesaj direct ajunge doar la cei aleși. Dar și mesajul privat poate fi copiat.</p></div>
+      <div class="card reveal"><div class="ico">👔</div><h3>Formal sau informal</h3><p>Limbaj oficial pentru profesori și secretariat, limbaj relaxat pentru prieteni.</p></div>
+      <div class="card reveal"><div class="ico">👣</div><h3>Amprenta digitală</h3><p>Tot ce publici poate fi salvat de alții, chiar dacă ștergi mai târziu. Postările tale spun o poveste despre tine.</p></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Laborator: ce canal aleg?</h2>
+    <div class="lab reveal" id="chan">
+      <div class="sit" data-a="email" data-why="Mesaj oficial către conducerea școlii, care nu cere răspuns pe loc: e-mail formal.">
+        <h3>Inviți directoarea la expoziția clasei.</h3>
+        <div class="btns"><button type="button" data-v="chat">Chat</button><button type="button" data-v="email">E-mail</button><button type="button" data-v="video">Apel video</button><button type="button" data-v="post">Postare publică</button></div><div class="fb" aria-live="polite"></div>
+      </div>
+      <div class="sit" data-a="chat" data-why="Întrebare scurtă, informală, către un coleg: chatul e rapid și potrivit.">
+        <h3>Îl întrebi pe un coleg la ce oră vă vedeți la bibliotecă.</h3>
+        <div class="btns"><button type="button" data-v="chat">Chat</button><button type="button" data-v="email">E-mail</button><button type="button" data-v="video">Apel video</button><button type="button" data-v="post">Postare publică</button></div><div class="fb" aria-live="polite"></div>
+      </div>
+      <div class="sit" data-a="video" data-why="Patru oameni care trebuie să decidă împreună, acum: o discuție sincronă, adică apel video.">
+        <h3>Echipa de 4 trebuie să decidă azi cum împarte sarcinile proiectului.</h3>
+        <div class="btns"><button type="button" data-v="chat">Chat</button><button type="button" data-v="email">E-mail</button><button type="button" data-v="video">Apel video</button><button type="button" data-v="post">Postare publică</button></div><div class="fb" aria-live="polite"></div>
+      </div>
+      <div class="sit" data-a="post" data-why="Informație pentru oricine e interesat: postarea publică pe pagina școlii ajunge la cei mai mulți.">
+        <h3>Anunți tot liceul că expoziția e deschisă vineri, în holul mare.</h3>
+        <div class="btns"><button type="button" data-v="chat">Chat</button><button type="button" data-v="email">E-mail</button><button type="button" data-v="video">Apel video</button><button type="button" data-v="post">Postare publică</button></div><div class="fb" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">E-mailul formal</h2>
+    <div class="vs">
+      <div class="card reveal"><h3><span class="bad">✗</span> Așa nu</h3><p><i>„salut, nu am inteles tema!!! ms”</i></p><p>Fără subiect, fără adresare, fără diacritice și fără semnătură. Profesorul nu știe cine scrie, din ce clasă și ce nu a înțeles.</p></div>
+      <div class="card reveal"><h3><span class="good">✓</span> Așa da</h3><p><i>„Bună ziua, doamna profesoară, nu am înțeles cerința 3 din tema pentru joi. Ne puteți da un exemplu? Vă mulțumesc, Ana Popescu, IX B”</i></p></div>
+    </div>
+    <ol class="steps reveal" style="margin-top:22px">
+      <li><b>Subiect</b><span>Scurt și clar: <i>TIC – IX B – întrebare despre tema 3</i>.</span></li>
+      <li><b>Adresare</b><span><i>Bună ziua, doamna profesoară,</i></span></li>
+      <li><b>Conținut</b><span>Ce dorești, cu detalii. Paragrafe scurte.</span></li>
+      <li><b>Încheiere</b><span><i>Vă mulțumesc,</i> sau <i>Cu stimă,</i></span></li>
+      <li><b>Semnătură</b><span>Nume, prenume și clasa.</span></li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Laborator: găsește greșelile</h2>
+    <p class="lead reveal">E-mailul de mai jos are <b>5 greșeli</b> de structură sau de netichetă. Dă clic pe rândurile greșite.</p>
+    <div class="lab reveal">
+      <div class="mail" id="mail">
+        <span class="ln" tabindex="0" data-e="Subiectul trebuie să spună despre ce e vorba, de exemplu „Invitație la expoziția clasei IX B”."><small>Subiect:</small> salut</span>
+        <span class="ln" tabindex="0" data-e="Adresarea e prea familiară pentru directoare. Corect: „Bună ziua, doamna directoare,”.">Hei doamna directoare,</span>
+        <span class="ln" tabindex="0" data-ok="1">Vă invităm la expoziția de fotografie a clasei a IX-a B.</span>
+        <span class="ln" tabindex="0" data-e="MAJUSCULELE înseamnă că strigi. Scrie normal, eventual îngroșat.">VA AVEA LOC VINERI LA ORA 12 ÎN HOLUL MARE!!!</span>
+        <span class="ln" tabindex="0" data-ok="1">Elevii vor prezenta fotografiile realizate în excursia din septembrie.</span>
+        <span class="ln" tabindex="0" data-e="Emoticoanele nu se potrivesc într-un mesaj oficial.">Ne-ar face mare plăcere să veniți 😍🎉</span>
+        <span class="ln" tabindex="0" data-e="Semnătura trebuie să conțină numele, prenumele și clasa, de exemplu „Ana Popescu, clasa a IX-a B”.">pa</span>
+      </div>
+      <div class="fb" id="mfb" aria-live="polite"></div>
+      <p class="score" id="msc">Greșeli găsite: 0 din 5</p>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Neticheta: buna-cuviință pe internet</h2>
+    <div class="grid">
+      <div class="card reveal"><div class="ico">🔠</div><h3>Fără MAJUSCULE</h3><p>Textul scris doar cu majuscule înseamnă că strigi.</p></div>
+      <div class="card reveal"><div class="ico">✍️</div><h3>Scrii corect</h3><p>Cu diacritice, cu punctuație, fără prescurtări („ms”, „pls”) în mesajele oficiale.</p></div>
+      <div class="card reveal"><div class="ico">🤐</div><h3>Respecți intimitatea</h3><p>Nu redirecționezi mesajele altora și nu publici capturi de ecran fără acordul lor.</p></div>
+      <div class="card reveal"><div class="ico">📎</div><h3>Verifici înainte de „Trimite”</h3><p>Destinatarul, subiectul, atașamentul. Un e-mail trimis nu mai poate fi retras.</p></div>
+    </div>
+    <div class="callout reveal"><b>Cc sau Bcc?</b> Trimiți un mesaj la 30 de părinți care nu se cunosc? Pune adresele la <b>Bcc</b>. Așa nimeni nu primește adresele celorlalți, iar un „Răspunde tuturor” nu mai ajunge la toată lista.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Colaborarea și feedbackul</h2>
+    <ol class="steps reveal">
+      <li><b>Ce e bine</b><span>„Titlul e clar și imaginile sunt bine alese.”</span></li>
+      <li><b>Ce se poate îmbunătăți și cum</b><span>„Textul alb pe galben se citește greu: încearcă albastru închis.”</span></li>
+      <li><b>O sugestie</b><span>„Poți adăuga o fotografie cu școala pe primul diapozitiv.”</span></li>
+    </ol>
+    <div class="grid" style="margin-top:22px">
+      <div class="card reveal"><div class="ico">👁️</div><h3>Vizualizare</h3><p>Pentru cei care doar citesc: părinții, publicul.</p></div>
+      <div class="card reveal"><div class="ico">💬</div><h3>Comentarii</h3><p>Pentru cei care dau feedback, dar nu schimbă textul: profesorul, colegii din altă echipă.</p></div>
+      <div class="card reveal"><div class="ico">✏️</div><h3>Editare</h3><p>Doar pentru membrii echipei care lucrează la document.</p></div>
+    </div>
+    <div class="callout reveal"><b>De reținut:</b> dai doar drepturile de care e nevoie. Un link „Oricine are linkul poate edita”, postat public, înseamnă că oricine îți poate șterge munca.</div>
+  </section>
+
+  <section class="block">
+    <h2 class="reveal">Verifică-te</h2>
+    <details class="q reveal"><summary>Videoconferința este comunicare sincronă sau asincronă?</summary><p>Sincronă: participanții sunt conectați în același timp.</p></details>
+    <details class="q reveal"><summary>Ce trei elemente ar trebui să aibă semnătura unui elev într-un e-mail formal?</summary><p>Numele, prenumele și clasa: „Ana Popescu, IX B”.</p></details>
+    <details class="q reveal"><summary>Care e diferența dintre Cc și Bcc?</summary><p>Ambele trimit o copie. La Cc toți destinatarii văd adresele celorlalți. La Bcc adresele rămân ascunse.</p></details>
+    <details class="q reveal"><summary>Un coleg îți scrie despre prezentare doar „e urât”. Cum ar arăta un feedback constructiv?</summary><p>Spune ce e bine, ce se poate îmbunătăți și cum, apoi o sugestie: „Structura e clară. Fontul e prea mic pentru proiector: încearcă 28. Poți pune un grafic în loc de tabel.”</p></details>
+  </section>
+</main>
+<footer>Liceul Teoretic „Panait Cerna” Brăila · TIC · prof. Aura Ion</footer>
+<script src="assets/scenes.js"></script>
+<script src="assets/main.js"></script>
+<script>
+// Ce canal aleg?
+document.querySelectorAll('#chan .sit').forEach(s=>{
+  const fb=s.querySelector('.fb'), bs=[...s.querySelectorAll('button')];
+  bs.forEach(b=>b.addEventListener('click',()=>{
+    bs.forEach(x=>x.setAttribute('aria-pressed',x===b));
+    const ok=b.dataset.v===s.dataset.a;
+    fb.className='fb '+(ok?'ok':'no');
+    fb.textContent=ok?'Corect! '+s.dataset.why:'Mai gândește-te: cine primește mesajul, cât de urgent e și cât de oficial?';
+  }));
+});
+// Găsește greșelile din e-mail
+(function(){
+  const fb=document.getElementById('mfb'), sc=document.getElementById('msc');
+  const all=[...document.querySelectorAll('#mail .ln')], total=all.filter(l=>!l.dataset.ok).length;
+  function pick(l){
+    if(l.dataset.ok){l.classList.add('okf');fb.className='fb ok';fb.textContent='Acest rând este corect.';return;}
+    l.classList.add('found');fb.className='fb no';fb.textContent=l.dataset.e;
+    const n=all.filter(x=>x.classList.contains('found')).length;
+    sc.textContent=`Greșeli găsite: ${n} din ${total}`+(n===total?'. Bravo, le-ai găsit pe toate!':'');
+  }
+  all.forEach(l=>{l.addEventListener('click',()=>pick(l));l.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(l);}});});
+})();
+</script>
+</body>
+</html>
