@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fișă de Auto-Reflecție – TIC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  :root{
+    --violet:#8a3fc7; --violet-dark:#6a2aa3; --violet-soft:#f3eafb; --violet-line:#d9c2ef;
+    --teal:#13a89e; --teal-soft:#e3f6f4;
+    --red:#d93a3a; --red-soft:#fdeaea;
+    --ink:#1f1b2d; --muted:#6b6680; --bg:#eef1f6; --card:#ffffff; --line:#e4e2ec;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.5}
+  .wrap{max-width:860px;margin:0 auto;padding:16px 16px 120px}
+
+  /* Antet */
+  .hero{background:linear-gradient(135deg,var(--violet) 0%,var(--violet-dark) 100%);color:#fff;border-radius:22px;padding:24px 24px 26px;position:relative;overflow:hidden}
+  .hero::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.08)}
+  .hero .meta{font-size:14px;opacity:.9;margin:0 0 6px}
+  .hero h1{font-family:"Baloo 2",Nunito,sans-serif;font-weight:800;font-size:32px;line-height:1.1;margin:0 0 6px}
+  .hero .lesson{font-size:17px;margin:0;opacity:.95}
+  .hero .chip{display:inline-block;background:rgba(255,255,255,.18);border-radius:999px;padding:3px 12px;font-size:13px;margin-top:12px;font-weight:700}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:16px}
+  h2{font-family:"Baloo 2",Nunito,sans-serif;font-size:21px;margin:0 0 12px;color:var(--ink)}
+
+  /* Date elev */
+  .id-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+  .field label{display:block;font-weight:700;font-size:14px;color:var(--muted);margin-bottom:4px}
+  .field label .req{color:var(--red)}
+  .field input{width:100%;font:inherit;font-size:16px;padding:11px 13px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);outline:none;transition:border-color .2s,background .2s}
+  .field input:focus{border-color:var(--violet)}
+  .field input[readonly]{background:var(--violet-soft);border-color:var(--violet-line);font-weight:700;color:var(--violet-dark)}
+  .field.invalid input{border-color:var(--red);background:var(--red-soft)}
+  .err{display:none;color:var(--red);font-size:13px;font-weight:700;margin-top:4px}
+  .field.invalid .err{display:block}
+
+  /* Progres */
+  .progress-wrap{position:sticky;top:0;z-index:20;background:rgba(238,241,246,.94);backdrop-filter:blur(6px);padding:10px 0 8px;margin-top:8px}
+  .progress-box{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 16px}
+  .progress-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:14px;margin-bottom:8px}
+  .progress-top strong{font-family:"Baloo 2",Nunito,sans-serif;font-size:17px}
+  .progress-top .pct{font-weight:800;color:var(--violet)}
+  .bar{height:12px;border-radius:999px;background:var(--violet-soft);overflow:hidden}
+  .bar span{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--violet),var(--teal));transition:width .35s ease}
+
+  /* Întrebări */
+  .q-card{border-left:6px solid var(--violet-line);transition:border-color .25s}
+  .q-card.done{border-left-color:var(--teal)}
+  .q-head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .q-num{flex:0 0 38px;height:38px;border-radius:12px;background:var(--violet-soft);color:var(--violet);font-family:"Baloo 2",Nunito,sans-serif;font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center}
+  .q-card.done .q-num{background:var(--teal-soft);color:var(--teal)}
+  .q-title{flex:1;font-family:"Baloo 2",Nunito,sans-serif;font-weight:700;font-size:19px;line-height:1.2;margin:0}
+  .badge{flex:0 0 auto;font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;background:#f1f0f5;color:var(--muted);white-space:nowrap}
+  .q-card.done .badge{background:var(--teal-soft);color:var(--teal)}
+  .q-hint{font-size:14px;color:var(--muted);margin:-4px 0 10px}
+
+  textarea.answer{width:100%;min-height:120px;resize:vertical;font:inherit;font-size:16px;line-height:1.5;padding:12px 14px;border:2px solid var(--line);border-radius:14px;outline:none;color:var(--ink);background:#fff;transition:border-color .2s}
+  textarea.answer:focus{border-color:var(--violet)}
+  .answer-print{display:none;width:100%;min-height:60px;font-size:15px;line-height:1.5;padding:12px 14px;border:2px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);white-space:pre-wrap;word-wrap:break-word;overflow-wrap:anywhere}
+  .answer-print.empty{color:#a29db3;font-style:italic}
+  .q-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
+  .ideas{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .ideas .lbl{font-size:13px;font-weight:800;color:var(--muted)}
+  .idea-btn{font:inherit;font-size:13px;font-weight:700;border:1.5px solid var(--violet-line);background:var(--violet-soft);color:var(--violet-dark);border-radius:999px;padding:6px 12px;cursor:pointer;text-align:left;transition:background .15s,transform .1s}
+  .idea-btn:hover{background:#e9dbf7}
+  .idea-btn:active{transform:scale(.97)}
+  .counter{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .counter.near{color:#c27a00;font-weight:700}
+
+  /* Acțiuni */
+  .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:22px}
+  .btn{font:inherit;font-weight:800;font-size:16px;border:none;border-radius:14px;padding:14px 22px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:transform .1s,box-shadow .2s}
+  .btn:active{transform:scale(.98)}
+  .btn-primary{background:var(--violet);color:#fff;box-shadow:0 6px 16px rgba(138,63,199,.3)}
+  .btn-primary:hover{background:var(--violet-dark)}
+  .btn-ghost{background:#fff;color:var(--muted);border:2px solid var(--line)}
+  .footer-note{text-align:center;font-size:13px;color:var(--muted);margin-top:12px}
+  .pdf-footer{display:none;text-align:center;font-size:12px;color:var(--muted);margin-top:14px}
+
+  /* Overlay generare */
+  .overlay{position:fixed;inset:0;background:rgba(31,27,45,.55);display:none;align-items:center;justify-content:center;z-index:100}
+  .overlay.show{display:flex}
+  .overlay .box{background:#fff;border-radius:18px;padding:22px 26px;text-align:center;max-width:300px;margin:16px}
+  .spinner{width:42px;height:42px;border-radius:50%;border:4px solid var(--violet-soft);border-top-color:var(--violet);margin:0 auto 12px;animation:spin .9s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:700;z-index:110;transition:transform .3s;max-width:calc(100% - 32px);text-align:center}
+  .toast.show{transform:translateX(-50%) translateY(0)}
+
+  @media (max-width:640px){
+    body:not(.pdf-mode) .wrap{padding:12px 12px 110px}
+    body:not(.pdf-mode) .hero{padding:20px 18px;border-radius:18px}
+    body:not(.pdf-mode) .hero h1{font-size:26px}
+    body:not(.pdf-mode) .id-grid{grid-template-columns:1fr 1fr}
+    body:not(.pdf-mode) .id-grid .field:first-child{grid-column:1 / -1}
+    body:not(.pdf-mode) .card{padding:16px}
+    body:not(.pdf-mode) .q-title{font-size:17px}
+    body:not(.pdf-mode) .btn{width:100%;justify-content:center}
+  }
+
+  /* ===== Mod export PDF (aplicat temporar pe fișa vizibilă) ===== */
+  body.pdf-mode{background:#fff}
+  body.pdf-mode .wrap{max-width:none;margin:0;padding:0;width:760px}
+  body.pdf-mode #sheet{width:760px;max-width:none;margin:0;padding:0;background:#fff}
+  body.pdf-mode .pdf-hide{display:none !important}
+  body.pdf-mode textarea.answer{display:none}
+  body.pdf-mode .answer-print{display:block}
+  body.pdf-mode .field input{display:none}
+  body.pdf-mode .field .answer-print{min-height:0;padding:9px 12px;font-weight:700;font-size:15px}
+  body.pdf-mode .progress-wrap{position:static;background:#fff;backdrop-filter:none;padding:0;margin-top:14px}
+  body.pdf-mode .pdf-footer{display:block}
+  body.pdf-mode .card{margin-top:12px}
+  body.pdf-mode .id-grid{grid-template-columns:2fr 1fr 1fr}
+  body.pdf-mode .id-grid .field:first-child{grid-column:auto}
+
+  /* Rezervă: imprimare din browser (dacă biblioteca PDF nu se încarcă) */
+  @page{size:A4 portrait;margin:12mm}
+  @media print{
+    body{background:#fff}
+    .pdf-hide,.overlay,.toast{display:none !important}
+    .wrap{max-width:none;padding:0}
+    .progress-wrap{position:static}
+    .card,.hero{break-inside:avoid}
+    textarea.answer{display:none}
+    .answer-print{display:block}
+    .hero{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="sheet">
+    <header class="hero">
+      <p class="meta" id="metaLine"></p>
+      <h1>Fișă de Auto-Reflecție</h1>
+      <p class="lesson" id="lessonLine"></p>
+      <span class="chip" id="unitChip"></span>
+    </header>
+
+    <section class="card id-card">
+      <h2>Datele elevului</h2>
+      <div class="id-grid">
+        <div class="field" id="nameField">
+          <label for="studentName">Nume și prenume elev <span class="req">*</span></label>
+          <input type="text" id="studentName" autocomplete="name" placeholder="Ex: Popescu Ana-Maria" maxlength="80">
+          <div class="err">Completează numele înainte de descărcare.</div>
+        </div>
+        <div class="field">
+          <label for="studentClass">Clasa</label>
+          <input type="text" id="studentClass" readonly>
+        </div>
+        <div class="field">
+          <label for="sheetDate">Data</label>
+          <input type="text" id="sheetDate" readonly>
+        </div>
+      </div>
+    </section>
+
+    <div class="progress-wrap">
+      <div class="progress-box">
+        <div class="progress-top">
+          <strong id="progressText">0 / 6 Întrebări completate</strong>
+          <span class="pct" id="progressPct">0%</span>
+        </div>
+        <div class="bar"><span id="progressBar"></span></div>
+      </div>
+    </div>
+
+    <div id="questions"></div>
+
+    <p class="pdf-footer" id="pdfFooter"></p>
+  </div>
+
+  <div class="actions pdf-hide">
+    <button class="btn btn-ghost" id="resetBtn" type="button">↺ Golește fișa</button>
+    <button class="btn btn-primary" id="downloadBtn" type="button">⬇ Descarcă PDF</button>
+  </div>
+  <p class="footer-note pdf-hide">Răspunsurile se salvează automat pe acest dispozitiv până descarci fișa.</p>
+</div>
+
+<div class="overlay" id="overlay"><div class="box"><div class="spinner"></div><strong>Se generează PDF-ul…</strong><div style="font-size:13px;color:#6b6680;margin-top:4px">Te rog să aștepți câteva secunde.</div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ======= CONFIGURARE – modificați aici ======= */
+const CONFIG = {
+  disciplina: "Tehnologia Informației și a Comunicațiilor (TIC)",
+  clasa: "a IX-a",
+  unitate: "U2 • Inteligența artificială pe înțelesul tuturor",
+  lectie: "Lecția 3: Cum întreb un chatbot și cum verific răspunsul",
+  minCaractere: 3,      // de la câte caractere o întrebare e „Completată”
+  maxCaractere: 1000
+};
+
+const QUESTIONS = [
+  { title:"Ce am învățat?", hint:"Notează noțiunile sau abilitățile noi de la această lecție.",
+    ideas:["Am învățat că un prompt bun conține context, sarcina clară și formatul dorit pentru răspuns, de exemplu ",
+           "Am aflat că un chatbot poate da răspunsuri greșite sau inventate (halucinații) și de aceea "] },
+  { title:"Ce am înțeles?", hint:"Explică pe scurt, cu propriile cuvinte, o idee importantă.",
+    ideas:["Am înțeles de ce trebuie să verific răspunsul chatbotului în cel puțin două surse de încredere: ",
+           "Am înțeles că un chatbot alege cuvânt cu cuvânt varianta cea mai probabilă, nu „știe” adevărul, așa că "] },
+  { title:"Ce nu am înțeles încă pe deplin?", hint:"Este în regulă să nu știi totul – scrie ce ai vrea să clarifici.",
+    ideas:["Încă nu îmi este clar cum îmi dau seama dacă o sursă de pe internet este de încredere, mai ales când ",
+           "Aș vrea să înțeleg mai bine de ce chatbotul inventează uneori informații care par foarte convingătoare, de exemplu "] },
+  { title:"Ce mi s-a părut dificil?", hint:"Gândește-te la momentul în care te-ai blocat.",
+    ideas:["Mi s-a părut dificil să formulez o întrebare suficient de precisă, pentru că ",
+           "Mi-a fost greu să găsesc surse care să confirme (sau să infirme) răspunsul primit despre "] },
+  { title:"Cum am rezolvat problema?", hint:"Descrie pașii sau strategia pe care ai folosit-o.",
+    ideas:["Am reformulat promptul, adăugând mai multe detalii despre context și despre ce aștept, iar rezultatul a fost ",
+           "Am comparat răspunsul chatbotului cu un manual sau un site oficial și am observat că "] },
+  { title:"Ce aș putea face diferit?", hint:"Ce vei schimba data viitoare când folosești un chatbot?",
+    ideas:["Data viitoare voi cere chatbotului să își precizeze sursele și le voi verifica eu însumi/însămi, deoarece ",
+           "Aș verifica fiecare informație importantă înainte să o folosesc într-o temă sau într-un proiect, de exemplu "] }
+];
+/* ============================================ */
+
+const STORE_KEY = "autoreflectie_" + CONFIG.clasa + "_" + CONFIG.lectie;
+const $ = s => document.querySelector(s);
+
+$("#metaLine").textContent = CONFIG.disciplina + " • Clasa " + CONFIG.clasa;
+$("#lessonLine").textContent = CONFIG.lectie;
+$("#unitChip").textContent = CONFIG.unitate;
+$("#studentClass").value = CONFIG.clasa;
+const today = new Date();
+$("#sheetDate").value = today.toLocaleDateString("ro-RO",{day:"2-digit",month:"2-digit",year:"numeric"});
+
+/* Construiește întrebările */
+const qWrap = $("#questions");
+QUESTIONS.forEach((q,i) => {
+  const card = document.createElement("section");
+  card.className = "card q-card";
+  card.innerHTML = `
+    <div class="q-head">
+      <div class="q-num">${i+1}</div>
+      <h3 class="q-title"></h3>
+      <span class="badge">Necompletat</span>
+    </div>
+    <p class="q-hint"></p>
+    <textarea class="answer" id="q${i}" maxlength="${CONFIG.maxCaractere}" placeholder="Scrie răspunsul tău aici…" aria-label=""></textarea>
+    <div class="q-foot">
+      <div class="ideas pdf-hide"><span class="lbl">💡 Idei rapide:</span></div>
+      <span class="counter">0 / ${CONFIG.maxCaractere} caractere</span>
+    </div>`;
+  card.querySelector(".q-title").textContent = q.title;
+  card.querySelector(".q-hint").textContent = q.hint;
+  const ta = card.querySelector("textarea");
+  ta.setAttribute("aria-label", q.title);
+  const ideas = card.querySelector(".ideas");
+  q.ideas.forEach(text => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "idea-btn";
+    b.textContent = text.trim().split(" ").slice(0,6).join(" ") + "…";
+    b.title = text.trim();
+    b.addEventListener("click", () => {
+      const cur = ta.value;
+      const sep = cur && !/\s$/.test(cur) ? "\n" : "";
+      ta.value = (cur + sep + text).slice(0, CONFIG.maxCaractere);
+      ta.dispatchEvent(new Event("input"));
+      ta.focus();
+      ta.setSelectionRange(ta.value.length, ta.value.length);
+    });
+    ideas.appendChild(b);
+  });
+  ta.addEventListener("input", () => { updateCard(card, ta); updateProgress(); save(); });
+  qWrap.appendChild(card);
+});
+
+function updateCard(card, ta){
+  const n = ta.value.length;
+  const done = ta.value.trim().length >= CONFIG.minCaractere;
+  card.classList.toggle("done", done);
+  card.querySelector(".badge").textContent = done ? "✓ Completat" : "Necompletat";
+  const c = card.querySelector(".counter");
+  c.textContent = n + " / " + CONFIG.maxCaractere + " caractere";
+  c.classList.toggle("near", n > CONFIG.maxCaractere * 0.9);
+}
+function updateProgress(){
+  const total = QUESTIONS.length;
+  const done = document.querySelectorAll(".q-card.done").length;
+  const pct = Math.round(done / total * 100);
+  $("#progressText").textContent = `${done} / ${total} Întrebări completate`;
+  $("#progressPct").textContent = pct + "%";
+  $("#progressBar").style.width = pct + "%";
+}
+
+/* Salvare automată locală (opțională, nu blochează nimic dacă nu e disponibilă) */
+function save(){
+  try{
+    const data = { name: $("#studentName").value, answers: QUESTIONS.map((_,i)=>$("#q"+i).value) };
+    localStorage.setItem(STORE_KEY, JSON.stringify(data));
+  }catch(e){}
+}
+function load(){
+  try{
+    const data = JSON.parse(localStorage.getItem(STORE_KEY) || "null");
+    if(!data) return;
+    $("#studentName").value = data.name || "";
+    (data.answers||[]).forEach((v,i)=>{ const ta=$("#q"+i); if(ta) ta.value = v || ""; });
+  }catch(e){}
+}
+load();
+document.querySelectorAll(".q-card").forEach(card => updateCard(card, card.querySelector("textarea")));
+updateProgress();
+
+$("#studentName").addEventListener("input", () => {
+  if($("#studentName").value.trim()) $("#nameField").classList.remove("invalid");
+  save();
+});
+
+function toast(msg){
+  const t = $("#toast"); t.textContent = msg; t.classList.add("show");
+  clearTimeout(t._h); t._h = setTimeout(()=>t.classList.remove("show"), 3200);
+}
+
+$("#resetBtn").addEventListener("click", () => {
+  if(!confirm("Sigur vrei să ștergi toate răspunsurile?")) return;
+  document.querySelectorAll("textarea.answer").forEach(t => { t.value = ""; t.dispatchEvent(new Event("input")); });
+  $("#studentName").value = ""; save();
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+/* ===== Export PDF ===== */
+const nextFrame = () => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+/* Sincronizează valorile introduse în copii statice, vizibile, plasate chiar în fișă */
+function syncForExport(){
+  const mirrors = [];
+  document.querySelectorAll("#sheet textarea.answer, #sheet .field input").forEach(el => {
+    el.setAttribute("value", el.value);              // păstrează valoarea și ca atribut
+    if(el.tagName === "TEXTAREA") el.textContent = el.value;
+    const m = document.createElement("div");
+    m.className = "answer-print";
+    const v = el.value.trim();
+    if(v){ m.textContent = el.value; } else { m.textContent = "(fără răspuns)"; m.classList.add("empty"); }
+    el.insertAdjacentElement("afterend", m);
+    mirrors.push({el, m});
+  });
+  // verificare: fiecare valoare introdusă trebuie să fie prezentă în documentul exportat
+  const ok = mirrors.every(({el,m}) => !el.value.trim() || m.textContent === el.value);
+  return {mirrors, ok};
+}
+function cleanupExport(mirrors){
+  mirrors.forEach(({m}) => m.remove());
+  document.body.classList.remove("pdf-mode");
+}
+function safeFileName(s){
+  return s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^A-Za-z0-9]+/g,"_").replace(/^_|_$/g,"");
+}
+
+$("#downloadBtn").addEventListener("click", async () => {
+  const nameInput = $("#studentName");
+  const name = nameInput.value.trim();
+  if(!name){
+    $("#nameField").classList.add("invalid");
+    nameInput.scrollIntoView({behavior:"smooth", block:"center"});
+    setTimeout(()=>nameInput.focus(), 350);
+    toast("⚠ Completează numele și prenumele înainte de descărcare.");
+    return;
+  }
+  const done = document.querySelectorAll(".q-card.done").length;
+  if(done < QUESTIONS.length && !confirm(`Ai completat ${done} din ${QUESTIONS.length} întrebări. Descarci totuși fișa?`)) return;
+
+  const libsOk = typeof window.html2canvas === "function" && window.jspdf && window.jspdf.jsPDF;
+  // rezervă: dacă bibliotecile PDF nu s-au încărcat (fără internet), folosește tipărirea „Salvează ca PDF”
+  if(!libsOk){
+    const {mirrors} = syncForExport();
+    toast("Alege „Salvează ca PDF” în fereastra de tipărire.");
+    window.print();
+    setTimeout(()=>mirrors.forEach(({m})=>m.remove()), 500);
+    return;
+  }
+
+  $("#overlay").classList.add("show");
+  const btn = $("#downloadBtn"); btn.disabled = true;
+  let mirrors = [];
+  const prevScroll = window.scrollY;
+  try{
+    if(document.activeElement) document.activeElement.blur();
+    window.scrollTo(0,0);
+    const res = syncForExport(); mirrors = res.mirrors;
+    if(!res.ok) throw new Error("Valorile nu au putut fi sincronizate.");
+    $("#pdfFooter").textContent = `Fișă completată de ${name} • Clasa ${CONFIG.clasa} • ${$("#sheetDate").value}`;
+    document.body.classList.add("pdf-mode");
+    if(document.fonts && document.fonts.ready) await document.fonts.ready;   // fonturile încărcate
+    await nextFrame(); await new Promise(r => setTimeout(r, 200));         // randare finalizată
+
+    const sheet = $("#sheet");
+    // verificare finală: răspunsurile sunt prezente în fișa care se exportă
+    const sheetText = sheet.innerText;
+    const missing = mirrors.some(({el}) => el.value.trim() && !sheetText.includes(el.value.trim().slice(0,40)));
+    if(missing) throw new Error("Răspunsurile nu apar în fișa exportată.");
+
+    const W = sheet.offsetWidth, H = sheet.offsetHeight;
+    const top0 = sheet.getBoundingClientRect().top;
+
+    // puncte sigure de tăiere: între blocuri și între rândurile de text
+    const blockSet = new Set(), cuts = new Set();
+    sheet.querySelectorAll(":scope > .hero, :scope > .card, :scope > .progress-wrap, #questions > .card, :scope > .pdf-footer")
+      .forEach(el => blockSet.add(Math.floor(el.getBoundingClientRect().top - top0 - 6)));
+    sheet.querySelectorAll(".answer-print").forEach(el => {
+      if(!el.firstChild) return;
+      const r = document.createRange(); r.selectNodeContents(el);
+      Array.from(r.getClientRects()).forEach(rc => cuts.add(Math.ceil(rc.bottom - top0 + 1)));
+    });
+    const clean = set => Array.from(set).filter(c => c > 0 && c < H).sort((a,b)=>a-b);
+    const blockCuts = clean(blockSet), lineCuts = clean(cuts);
+
+    const scale = 2;
+    const canvas = await window.html2canvas(sheet, {
+      scale, useCORS: true, backgroundColor: "#ffffff", logging: false,
+      windowWidth: 800, scrollX: 0, scrollY: 0, width: W, height: H
+    });
+
+    // A4 portret: 210 x 297 mm, margini 12 mm, subsol 12 mm
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait", compress: true });
+    const mL = 12, mT = 12, cw = 210 - 2*mL, chMax = 297 - mT - 16;
+    const pxPerMm = W / cw, pageHpx = Math.floor(chMax * pxPerMm);
+
+    const slices = []; let start = 0;
+    while(start < H - 2){
+      let end = Math.min(start + pageHpx, H);
+      if(end < H){
+        // 1) între carduri  2) între rânduri de text  3) tăiere la limita paginii
+        const pick = (list, minFrac) => list.filter(c => c > start + pageHpx*minFrac && c <= end).pop();
+        end = pick(blockCuts, 0.5) ?? pick(lineCuts, 0.25) ?? pick(blockCuts, 0.15) ?? end;
+      }
+      slices.push([start, end]); start = end;
+    }
+    slices.forEach(([a,b], i) => {
+      const part = document.createElement("canvas");
+      part.width = canvas.width; part.height = Math.round((b-a)*scale);
+      const ctx = part.getContext("2d");
+      ctx.fillStyle = "#ffffff"; ctx.fillRect(0,0,part.width,part.height);
+      ctx.drawImage(canvas, 0, Math.round(a*scale), canvas.width, part.height, 0, 0, part.width, part.height);
+      if(i > 0) pdf.addPage();
+      pdf.addImage(part.toDataURL("image/jpeg", 0.95), "JPEG", mL, mT, cw, (b-a)/pxPerMm);
+      pdf.setFontSize(9); pdf.setTextColor(140);
+      pdf.text(`Pagina ${i+1} / ${slices.length}`, 105, 297-7, {align:"center"});
+    });
+    pdf.save(`Autoreflectie_TIC_${safeFileName(CONFIG.clasa)}_${safeFileName(name)}.pdf`);
+    toast("✓ PDF-ul a fost descărcat.");
+  }catch(err){
+    console.error(err);
+    toast("A apărut o problemă la generare. Încearcă din nou.");
+  }finally{
+    cleanupExport(mirrors);
+    $("#overlay").classList.remove("show");
+    btn.disabled = false;
+    window.scrollTo(0, prevScroll);
+  }
+});
+</script>
+</body>
+</html>
