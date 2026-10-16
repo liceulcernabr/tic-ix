@@ -188,6 +188,10 @@ canvas{background:var(--soft);border-radius:8px;border:1px solid var(--line);max
 .ucards a:hover{background:var(--soft)}
 .ucards .c{font-family:var(--f-head);font-weight:800;color:var(--k)}
 .ucards small{color:var(--muted);display:block}
+.bd{margin:18px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--soft);max-width:640px}
+.bd-t{font-family:var(--f-head);font-weight:700;font-size:1.05rem;padding:6px 14px;color:#fff;background:var(--uc,var(--c2))}
+.bd a{display:block}.bd img{display:block;width:100%;height:auto}
+.bd figcaption{padding:8px 14px;font-size:.9rem;color:var(--muted)}
 footer{max-width:1320px;margin:0 auto;padding:10px 20px 40px;color:var(--muted);font-size:.9rem}
 .theme-t{border-color:var(--line);font-weight:400}
 </style>
@@ -222,6 +226,7 @@ const APL  = (n, t, steps, fisier) => box("aplica", `Aplicația ${n}: ${t}`, (fi
 const LAB  = k => `<div class="lab" data-w="${k}"></div>`;
 const K = s => `<kbd>${s}</kbd>`;
 const M = (en, ro) => `<span class="menu">${en}${ro?` <span class="ro">(${ro})</span>`:""}</span>`;
+const BD = (src, alt, q) => `<figure class="bd"><div class="box-t bd-t">Bandă desenată</div><a href="${src}" target="_blank" rel="noopener" title="Deschide imaginea mare"><img src="${src}" alt="${alt}" loading="lazy"></a>${q?`<figcaption>${q}</figcaption>`:""}</figure>`;
 const dl = f => `<button class="dl" data-file="${f}">⬇ Descarcă fișierul de lucru: ${f}</button>`;
 
 const UNITS = [
@@ -315,6 +320,7 @@ ${PAS("creez un formular de feedback (Google Forms)",["Intră în contul școlii
   lessons:[
   { id:"l1", title:"Ce este inteligența artificială?", html:`
 ${DESC(`<p>Telefonul îți recunoaște fața. Aplicația de muzică îți propune melodii. E-mailul mută singur reclamele în Spam. Ce au în comun?</p>`)}
+${BD("comics/u2-l1.jpg","Bandă desenată: doi elevi descoperă că deblocarea cu fața, recomandările muzicale și filtrul de spam folosesc IA, care găsește tipare în multe exemple.","Citește banda, apoi răspunde: ce au în comun cele trei situații?")}
 <p><b>Inteligența artificială (IA)</b> este o ramură a informaticii care creează programe capabile să facă lucruri pe care de obicei le fac oamenii: să recunoască imagini și voci, să traducă, să recomande, să răspundă la întrebări.</p>
 <div class="tablewrap"><table><tr><th>Ce face IA</th><th>Exemplu</th></tr>
 <tr><td>Recunoaște / clasifică</td><td>filtrul de spam, deblocarea telefonului cu fața</td></tr>
@@ -325,6 +331,7 @@ ${RET(`IA nu „gândește” ca un om. Ea găsește <b>tipare</b> (regularită�
 ${LAB("isai")}` },
   { id:"l2", title:"Cum „învață” un program?", html:`
 ${DESC(`<p>Cum ai învățat, când erai mic, să recunoști un măr? Cineva ți-a arătat multe mere: roșii, verzi, mari, mici.</p>`)}
+${BD("comics/u2-l2.jpg","Bandă desenată: un robot antrenat doar cu mere roșii nu recunoaște un măr verde; elevii adaugă mai multe exemple etichetate și robotul învață corect.","De ce a greșit robotul la început? Ce au schimbat elevii?")}
 <p>La fel „învață” un program de IA: primește <b>multe exemple cu eticheta corectă</b> (de exemplu, poze cu „măr” și poze cu „pară”) și caută singur ce le deosebește. Procesul se numește <b>învățare automată</b> și are câțiva pași:</p>
 <ol><li><b>Datele</b> – adunăm exemple.</li><li><b>Etichetarea</b> – spunem ce reprezintă fiecare exemplu.</li><li><b>Antrenarea</b> – programul caută tipare.</li><li><b>Testarea</b> – îl verificăm pe exemple noi.</li></ol>
 ${LAB("robot")}
@@ -332,6 +339,7 @@ ${ATT(`Dacă exemplele sunt puține sau prea asemănătoare, programul greșeșt
 ${STIAI(`Poți antrena singur un model simplu, fără să scrii cod, cu <b>Teachable Machine</b> (Google): îi arăți prin cameră câteva exemple din fiecare categorie și apoi îl testezi.`)}` },
   { id:"l3", title:"Cum întreb un chatbot și cum verific răspunsul", html:`
 ${DESC(`<p>Ai întrebat vreodată un chatbot ceva și ai primit un răspuns greșit, dar spus foarte sigur?</p>`)}
+${BD("comics/u2-l3.jpg","Bandă desenată: un chatbot spune că Mercur e cea mai fierbinte planetă; elevii verifică în manualul de astronomie și află că Venus este, datorită efectului de seră.","Ce greșeală a făcut chatbotul și cum au descoperit-o elevii?")}
 <p>Un <b>chatbot</b> (de exemplu ChatGPT, Gemini, Copilot) este un program care conversează în scris. Răspunsul lui este construit cuvânt cu cuvânt, pe baza tiparelor din textele cu care a fost antrenat. De aceea:</p>
 <ul><li>poate da răspunsuri diferite la aceeași întrebare;</li><li>poate <b>inventa</b> informații care sună adevărat (se numesc <b>halucinații</b>), chiar și surse care nu există.</li></ul>
 <h3>Cererea bună (promptul)</h3>
@@ -343,6 +351,7 @@ ${LAB("prompt")}
 ${LAB("factcheck")}` },
   { id:"l4", title:"Folosesc IA corect. Realitatea virtuală și augmentată", html:`
 ${DESC(`<p>Este corect să predai drept al tău un text scris de un chatbot?</p>`)}
+${BD("comics/u2-l4.jpg","Bandă desenată: o elevă îl oprește pe colegul ei să predea un referat scris de chatbot, îi amintește să nu scrie parole, recunoaște un deepfake, apoi colegul vizitează un muzeu în VR.","Găsește în bandă trei reguli pentru folosirea corectă a IA.")}
 <h3>Reguli pentru folosirea IA</h3>
 <ul><li><b>Nu introduce date personale</b> (ale tale sau ale altora), parole sau fotografii private.</li><li><b>Declară</b> când ai folosit IA și la ce.</li><li><b>Lucrarea trebuie să fie a ta</b>: IA te poate ajuta să îți corectezi textul sau să înțelegi o lecție, nu să îți facă tema.</li><li><b>Imaginile și clipurile false</b> (deepfake) pot păcăli ușor: verifică sursa înainte să distribui.</li><li>IA consumă multă <b>energie</b> în centrele de date: folosește-o când chiar te ajută.</li></ul>
 ${STIAI(`În Uniunea Europeană există o lege pentru IA: <b>Regulamentul european privind inteligența artificială (AI Act)</b>, adoptat în 2024 și aplicat treptat. Legea interzice unele utilizări periculoase și cere reguli stricte pentru sistemele folosite în educație.`)}
