@@ -317,6 +317,8 @@ ${PAS("creez un formular de feedback (Google Forms)",["Intră în contul școlii
    text:"Derulează și urmărește exemplele etichetate care antrenează o rețea, o predicție nouă și un chatbot care alege cuvânt cu cuvânt. Include două laboratoare: părtinirea datelor și halucinațiile." },
   reflect:{ href:"lectii/ia/fisa-autoreflectie.html", title:"🪞 Fișa de autoreflecție",
    text:"Lecția 3: Cum întreb un chatbot și cum verific răspunsul. Răspunzi la 6 întrebări și descarci fișa ca PDF." },
+  extra:{ href:"lectii/ia/fisa-gemini-notebook.html", title:"📓 Fișa Gemini Notebook: Verificarea informațiilor virale cu AI",
+   text:"Activitate în perechi, 50 de minute. Completezi fișa pe site, o descarci în Word și o predai în Google Classroom." },
   lessons:[
   { id:"l1", title:"Ce este inteligența artificială?", html:`
 ${DESC(`<p>Telefonul îți recunoaște fața. Aplicația de muzică îți propune melodii. E-mailul mută singur reclamele în Spam. Ce au în comun?</p>`)}
@@ -1221,7 +1223,7 @@ function unitDone(u){ const p=store.get("prog",{})[u.id]||{}; const t=store.get(
 function drawToc(){
   const [cu,cl]=(location.hash||"").slice(1).split("/");
   $("#toc").innerHTML=`<li><a class="u ${!cu||cu==="acasa"?"cur":""}" href="#acasa"><i style="--k:var(--c0)">★</i>Început</a></li>`+UNITS.map(u=>`<li><a class="u ${cu===u.id?"cur":""} ${unitDone(u)?"done":""}" href="#${u.id}"><i style="--k:var(${u.color})">${u.code}</i>${u.name}</a>
-   ${cu===u.id?`<ol>${u.lessons.map((l,i)=>`<li><a class="${cl===l.id?"cur":""}" href="#${u.id}/${l.id}">${i+1}. ${l.title}</a></li>`).join("")}${u.anim?`<li><a href="${u.anim.href}">🎬 Lecția animată</a></li>`:""}${u.reflect?`<li><a href="${u.reflect.href}">🪞 Fișa de autoreflecție</a></li>`:""}<li><a class="${cl==="fisa"?"cur":""}" href="#${u.id}/fisa">Fișa de lucru</a></li>${u.quiz?`<li><a class="${cl==="test"?"cur":""}" href="#${u.id}/test">Test de evaluare</a></li>`:""}</ol>`:""}</li>`).join("");
+   ${cu===u.id?`<ol>${u.lessons.map((l,i)=>`<li><a class="${cl===l.id?"cur":""}" href="#${u.id}/${l.id}">${i+1}. ${l.title}</a></li>`).join("")}${u.anim?`<li><a href="${u.anim.href}">🎬 Lecția animată</a></li>`:""}${u.reflect?`<li><a href="${u.reflect.href}">🪞 Fișa de autoreflecție</a></li>`:""}<li><a class="${cl==="fisa"?"cur":""}" href="#${u.id}/fisa">Fișa de lucru</a></li>${u.quiz?`<li><a class="${cl==="test"?"cur":""}" href="#${u.id}/test">Test de evaluare</a></li>`:""}${u.extra?`<li><a href="${u.extra.href}">📓 Fișa Gemini Notebook</a></li>`:""}</ol>`:""}</li>`).join("");
 }
 
 /* ---------- pagini ---------- */
@@ -1246,7 +1248,8 @@ function unitHome(u){
   ${u.anim?`<a href="${u.anim.href}" style="border-color:var(--uc)"><span class="n">▶</span><span><b>${u.anim.title}</b><br><small class="small">${u.anim.text}</small></span></a>`:""}
   ${u.reflect?`<a href="${u.reflect.href}" style="border-color:var(--uc)"><span class="n">🪞</span><span><b>${u.reflect.title}</b><br><small class="small">${u.reflect.text}</small></span></a>`:""}
   <a href="#${u.id}/fisa"><span class="n">✎</span><span><b>Fișa de lucru individuală</b><br><small class="small">${u.sheet.title}</small></span></a>
-  ${u.quiz?`<a href="#${u.id}/test"><span class="n">?</span><span><b>Test de evaluare</b> – ${u.quiz.length} întrebări</span></a>`:""}</div></div>`;
+  ${u.quiz?`<a href="#${u.id}/test"><span class="n">?</span><span><b>Test de evaluare</b> – ${u.quiz.length} întrebări</span></a>`:""}
+  ${u.extra?`<a href="${u.extra.href}" style="border-color:var(--uc)"><span class="n">📓</span><span><b>${u.extra.title}</b><br><small class="small">${u.extra.text}</small></span></a>`:""}</div></div>`;
 }
 function navFor(u,cur){
   const seq=u.lessons.map(l=>l.id).concat(["fisa"]).concat(u.quiz?["test"]:[]);

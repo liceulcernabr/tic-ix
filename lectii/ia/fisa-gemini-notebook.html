@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fișa Gemini Notebook – TIC IX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--violet:#8a3fc7;--violet-dark:#6a2aa3;--violet-soft:#f3eafb;--violet-line:#d9c2ef;--teal:#13a89e;--teal-soft:#e3f6f4;--amber:#c27a00;--amber-soft:#fff4dc;--red:#d93a3a;--ink:#1f1b2d;--muted:#6b6680;--bg:#eef1f6;--card:#fff;--line:#e4e2ec}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Nunito",system-ui,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.5}
+.wrap{max-width:880px;margin:0 auto;padding:16px 16px 120px}
+.back{display:inline-block;margin:4px 0 12px;font-weight:700;color:var(--violet-dark);text-decoration:none}
+.hero{background:linear-gradient(135deg,var(--violet),var(--violet-dark));color:#fff;border-radius:22px;padding:24px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.08)}
+.hero .meta{font-size:14px;opacity:.9;margin:0 0 6px}
+.hero h1{font-family:"Baloo 2",Nunito,sans-serif;font-weight:800;font-size:32px;line-height:1.1;margin:0 0 6px}
+.hero p{margin:6px 0 0;opacity:.95}
+.chip{display:inline-block;background:rgba(255,255,255,.18);border-radius:999px;padding:3px 12px;font-size:13px;margin:12px 6px 0 0;font-weight:700}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-top:16px}
+h2{font-family:"Baloo 2",Nunito,sans-serif;font-size:22px;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+h2 .n{flex:0 0 36px;height:36px;border-radius:11px;background:var(--violet-soft);color:var(--violet);display:flex;align-items:center;justify-content:center;font-size:19px}
+.card.done h2 .n{background:var(--teal-soft);color:var(--teal)}
+h3{font-family:"Baloo 2",Nunito,sans-serif;font-size:18px;margin:18px 0 6px}
+.time{font-size:14px;color:var(--muted);margin:0 0 12px}
+.grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:12px}
+label.f{display:block;font-weight:700;font-size:14px;color:var(--muted);margin:12px 0 4px}
+input[type=text],input[type=date],textarea{width:100%;font:inherit;font-size:16px;padding:10px 12px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--ink);outline:none}
+input:focus,textarea:focus{border-color:var(--violet)}
+textarea{min-height:76px;resize:vertical}
+textarea.big{min-height:120px}
+.rule{background:var(--violet-soft);border:1px solid var(--violet-line);border-radius:14px;padding:12px 16px;margin-top:12px;font-weight:700;color:var(--violet-dark)}
+.scenario{background:var(--amber-soft);border-left:5px solid var(--amber);border-radius:12px;padding:12px 16px;margin:10px 0}
+.note{font-size:14px;color:var(--muted)}
+.warn{background:#fdeaea;border-radius:12px;padding:10px 14px;font-size:14px;margin-top:12px}
+.prompt{background:#f7f5fb;border:1px dashed var(--violet-line);border-radius:12px;padding:12px 14px;font-size:15px;margin:8px 0;position:relative}
+.prompt .tag{font-size:12px;font-weight:800;color:var(--violet);text-transform:uppercase;letter-spacing:.5px}
+.copy{font:inherit;font-size:13px;font-weight:700;border:1.5px solid var(--violet-line);background:#fff;color:var(--violet-dark);border-radius:999px;padding:4px 12px;cursor:pointer;margin-top:6px}
+.btn{display:inline-block;font:inherit;font-weight:800;border:0;border-radius:12px;padding:11px 18px;cursor:pointer;text-decoration:none;background:var(--violet);color:#fff}
+.btn.teal{background:var(--teal)}.btn.ghost{background:#fff;color:var(--violet-dark);border:2px solid var(--violet-line)}
+.src{border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:8px 0}
+.src a{color:var(--violet-dark);font-weight:700}
+table{border-collapse:collapse;width:100%;margin-top:8px}
+th,td{border:1px solid var(--line);padding:8px;vertical-align:top;text-align:left;font-size:15px}
+th{background:var(--violet-soft);font-weight:700}
+td textarea{min-height:60px;font-size:15px;border-width:1px;padding:6px 8px;border-radius:8px}
+.choice label{display:flex;gap:10px;align-items:flex-start;border:2px solid var(--line);border-radius:12px;padding:9px 12px;margin:6px 0;cursor:pointer;font-weight:600}
+.choice input{margin-top:5px;accent-color:var(--violet)}
+.choice label:has(input:checked){border-color:var(--violet);background:var(--violet-soft)}
+.checks label{display:flex;gap:10px;font-weight:600;margin:4px 0}
+.counter{font-size:13px;color:var(--muted);text-align:right}
+.counter.ok{color:var(--teal);font-weight:700}.counter.bad{color:var(--amber);font-weight:700}
+.progress{position:sticky;top:0;z-index:20;background:rgba(238,241,246,.94);backdrop-filter:blur(6px);padding:10px 0 8px}
+.progress .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 14px;display:flex;align-items:center;gap:12px;font-size:14px}
+.bar{flex:1;height:10px;border-radius:99px;background:var(--violet-soft);overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--violet),var(--teal));transition:width .3s}
+.steps{counter-reset:s;padding-left:0;list-style:none}
+.steps li{counter-increment:s;position:relative;padding-left:36px;margin:8px 0}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:26px;height:26px;border-radius:8px;background:var(--teal-soft);color:var(--teal);font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px}
+.final{border:2px solid var(--teal);background:linear-gradient(180deg,#fff,var(--teal-soft))}
+.mono{font-family:Consolas,monospace;background:#f1f0f5;padding:1px 6px;border-radius:6px;word-break:break-all}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 18px;border-radius:12px;font-weight:700;display:none;z-index:50;max-width:90vw}
+@media(max-width:700px){.grid{grid-template-columns:1fr 1fr}.grid .w2{grid-column:1/-1}.hero h1{font-size:26px}table.t4 th:first-child{width:30%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../../#u2">← Înapoi la U2 – Inteligența artificială</a>
+<header class="hero">
+ <p class="meta">TIC • Clasa a IX-a • U2 • Gemini Notebook</p>
+ <h1>Verificarea informațiilor virale cu AI</h1>
+ <p><b>Real sau generat cu AI? Verificăm înainte să distribuim!</b></p>
+ <span class="chip">⏱ 50 de minute</span><span class="chip">👥 Activitate în perechi</span><span class="chip">💾 Se salvează automat</span>
+</header>
+
+<div class="progress"><div class="box"><b>Progres</b><div class="bar"><span id="bar"></span></div><span id="pct">0%</span></div></div>
+
+<section class="card">
+ <div class="grid">
+  <div class="w2"><label class="f" for="nume">Nume și prenume (ambii colegi)</label><input type="text" id="nume" data-k="nume" autocomplete="off"></div>
+  <div><label class="f" for="clasa">Clasa</label><input type="text" id="clasa" data-k="clasa" placeholder="ex. IX A"></div>
+  <div><label class="f" for="echipa">Echipa nr.</label><input type="text" id="echipa" data-k="echipa" placeholder="ex. 3"></div>
+ </div>
+ <label class="f" for="data" style="max-width:200px">Data</label><input type="date" id="data" data-k="data" style="max-width:200px">
+ <p>Vei folosi <b>Gemini Notebook</b> pentru a analiza surse, a formula cereri clare și a verifica răspunsurile AI. La final, vei realiza un ghid scurt pentru distribuirea responsabilă a informațiilor.</p>
+ <div class="rule">Regula lecției: AI propune răspunsuri. Tu verifici dovezile și formulezi concluzia.</div>
+</section>
+
+<section class="card" data-sec>
+ <h2><span class="n">1</span>Provocarea inițială</h2><p class="time">Timp de lucru: 5 minute. Citește scenariul fictiv de mai jos.</p>
+ <div class="scenario">Pe un grup de elevi apare mesajul: <i>„URGENT! De luni, toate liceele din România trec la cursuri online pentru două săptămâni! În acest videoclip, o persoană care pare reprezentantul Ministerului Educației confirmă informația. Distribuie imediat, ca să afle toți!”</i><br><br>Mesajul nu conține un link către un anunț oficial. Videoclipul este publicat de un cont necunoscut și are foarte multe vizualizări.</div>
+ <h3>Răspunde înainte să folosești AI</h3>
+ <label class="f" for="s1q1">1. Ai distribui mesajul? De ce?</label><textarea id="s1q1" data-k="s1q1"></textarea>
+ <label class="f" for="s1q2">2. Notează două lucruri pe care le-ai verifica.</label><textarea id="s1q2" data-k="s1q2"></textarea>
+ <label class="f" for="s1q3">3. Numărul mare de vizualizări dovedește că informația este adevărată? Explică.</label><textarea id="s1q3" data-k="s1q3"></textarea>
+</section>
+
+<section class="card" data-sec>
+ <h2><span class="n">2</span>Pregătește notebookul și sursele</h2><p class="time">Timp de lucru: 8 minute.</p>
+ <ol class="steps"><li>Deschide aplicația și folosește contul indicat de profesor.</li><li>Creează un notebook cu titlul <b>„Verific înainte să distribui – Echipa …”</b>.</li><li>Adaugă cele două surse de mai jos.</li><li>Verifică dacă textul fiecărei surse a fost importat și poate fi citit.</li></ol>
+ <p><a class="btn" href="https://notebooklm.google.com/" target="_blank" rel="noopener">Deschide Gemini Notebook ↗</a></p>
+ <h3>Surse pentru activitate</h3>
+ <div class="src"><b>S1</b> • <a href="https://www.europarl.europa.eu/topics/ro/article/20250603STO28720/dezinformarea-10-pasi-pentru-a-va-proteja-si-a-i-proteja-pe-ceilalti" target="_blank" rel="noopener">Parlamentul European – Dezinformarea: 10 pași pentru a vă proteja și a-i proteja pe ceilalți</a><br><span class="note">Folosește această sursă pentru recomandări privind verificarea informațiilor.</span> <button class="copy" data-copy="https://www.europarl.europa.eu/topics/ro/article/20250603STO28720/dezinformarea-10-pasi-pentru-a-va-proteja-si-a-i-proteja-pe-ceilalti">Copiază linkul</button></div>
+ <div class="src"><b>S2</b> • <a href="https://digital-strategy.ec.europa.eu/en/policies/virtual-worlds-disinformation" target="_blank" rel="noopener">Comisia Europeană – Disinformation and misinformation in virtual worlds</a><br><span class="note">Folosește această sursă pentru informații false, dezinformare și deepfake. Textul este în engleză; poți cere explicații în limba română.</span> <button class="copy" data-copy="https://digital-strategy.ec.europa.eu/en/policies/virtual-worlds-disinformation">Copiază linkul</button></div>
+ <p class="note">Dacă un link nu se importă, folosește textul sau PDF-ul pus la dispoziție de profesor, păstrând titlul și adresa sursei.</p>
+ <label class="f" for="s2i1">Instituția care publică S1</label><input type="text" id="s2i1" data-k="s2i1">
+ <label class="f" for="s2i2">Instituția care publică S2</label><input type="text" id="s2i2" data-k="s2i2">
+ <label class="f" for="s2m">Un motiv pentru care ai ales aceste surse</label><textarea id="s2m" data-k="s2m"></textarea>
+ <div class="warn"><b>Atenție:</b> o sursă poate explica metode de verificare fără să confirme un anumit mesaj viral.<br><b>Regulă pentru lucrul cu materialele:</b> folosește materialele publice indicate și scenariul fictiv. Nu încărca discuții private, fotografii ale colegilor sau date personale.</div>
+ <p class="note"><b>Obiectivele activității:</b> la final vei putea să organizezi surse într-un notebook, să formulezi cereri clare, să verifici două citări și să deosebești o informație confirmată de una neverificată.</p>
+</section>
+
+<section class="card" data-sec>
+ <h2><span class="n">3</span>Formulează cereri clare</h2><p class="time">Timp de lucru: 10 minute. Introdu pe rând cererile în conversația notebookului.</p>
+ <div class="prompt"><div class="tag">Cererea 1 • Înțeleg conceptele</div><span id="p1">Folosește doar sursele selectate. Explică în limba română, pentru un elev de clasa a IX-a, ce înseamnă informație falsă distribuită fără intenția de a înșela, dezinformare și deepfake. Răspunde într-un tabel cu două coloane: termen și explicație simplă. Indică sursele pentru explicații. Dacă un termen nu este explicat în surse, spune acest lucru.</span><br><button class="copy" data-copyid="p1">📋 Copiază cererea</button></div>
+ <p><b>Reformulează cu propriile cuvinte:</b></p>
+ <label class="f" for="s3d">Dezinformare</label><textarea id="s3d" data-k="s3d"></textarea>
+ <label class="f" for="s3f">Deepfake</label><textarea id="s3f" data-k="s3f"></textarea>
+ <div class="prompt"><div class="tag">Cererea 2 • Extrag recomandări</div><span id="p2">Pe baza surselor, propune cinci pași pe care un elev îi poate urma înainte de a distribui o informație virală. Formulează fiecare pas ca o acțiune concretă și indică sursa. Nu adăuga recomandări pe care nu le poți susține din materialele selectate.</span><br><button class="copy" data-copyid="p2">📋 Copiază cererea</button></div>
+ <p><b>Alege doi pași și explică aplicarea lor la mesajul despre cursurile online.</b></p>
+ <table><tr><th style="width:40%">Pas ales</th><th>Cum îl aplic mesajului?</th></tr>
+  <tr><td><textarea data-k="s3p1" aria-label="Pasul 1"></textarea></td><td><textarea data-k="s3a1" aria-label="Aplicarea pasului 1"></textarea></td></tr>
+  <tr><td><textarea data-k="s3p2" aria-label="Pasul 2"></textarea></td><td><textarea data-k="s3a2" aria-label="Aplicarea pasului 2"></textarea></td></tr></table>
+ <div class="prompt"><div class="tag">Cererea 3 • Identific limitele răspunsului</div><span id="p3">Pot aceste surse să confirme dacă mesajul despre trecerea tuturor liceelor la cursuri online este adevărat? Separă ce putem afla din materialele încărcate de ceea ce necesită verificare externă. Nu presupune că ai verificat anunțuri oficiale actuale.</span><br><button class="copy" data-copyid="p3">📋 Copiază cererea</button></div>
+ <label class="f" for="s3l1">Sursele încărcate mă ajută să…</label><textarea id="s3l1" data-k="s3l1"></textarea>
+ <label class="f" for="s3l2">Pentru a verifica anunțul concret, mai trebuie să…</label><textarea id="s3l2" data-k="s3l2"></textarea>
+</section>
+
+<section class="card" data-sec>
+ <h2><span class="n">4</span>Verifică două citări</h2><p class="time">Timp de lucru: 8 minute.</p>
+ <p>Alege două afirmații din răspunsurile aplicației. Deschide citarea aferentă fiecăreia și citește pasajul în context. Verifică dacă pasajul susține într-adevăr afirmația.</p>
+ <table class="t4" id="t4"><tr><th style="width:26%">Ce verific?</th><th>Afirmația 1</th><th>Afirmația 2</th></tr></table>
+ <div class="prompt"><div class="tag">Dacă răspunsul nu include o citare, cere:</div><span id="p4">Indică pasajul din sursă care susține această afirmație. Dacă nu există, precizează că afirmația nu este susținută de materialele încărcate.</span><br><button class="copy" data-copyid="p4">📋 Copiază cererea</button></div>
+ <h3>Concluzia verificării mele</h3>
+ <div class="choice" data-radio="s4c"></div>
+ <label class="f" for="s4e">Explicație</label><textarea id="s4e" data-k="s4e"></textarea>
+</section>
+
+<section class="card" data-sec>
+ <h2><span class="n">5</span>Rezolvă cazul inițial</h2><p class="time">Timp de lucru: 7 minute. Discutați în pereche și completați fără să copiați un răspuns generat de AI.</p>
+ <label class="f" for="s5a">A. Trei elemente care justifică verificări suplimentare</label><textarea id="s5a" data-k="s5a" placeholder="1.&#10;2.&#10;3."></textarea>
+ <label class="f" for="s5b">B. Două verificări concrete în afara notebookului</label><textarea id="s5b" data-k="s5b" placeholder="1.&#10;2."></textarea>
+ <p class="f" style="font-weight:700;color:var(--muted);font-size:14px;margin:12px 0 4px">C. Bifați verdictul justificat de informațiile disponibile</p>
+ <div class="choice" data-radio="s5c"></div>
+ <label class="f" for="s5r">Argumentul nostru, în două propoziții</label><textarea id="s5r" data-k="s5r"></textarea>
+ <label class="f" for="s5d">D. Poți afirma că videoclipul este un deepfake numai din descrierea primită? De ce?</label><textarea id="s5d" data-k="s5d"></textarea>
+ <label class="f" for="s5e">E. Scrie un răspuns de 30–50 de cuvinte pentru colegul care a distribuit mesajul. Fii respectuos și propune o verificare concretă.</label><textarea id="s5e" data-k="s5e" class="big" data-words="30-50"></textarea><div class="counter" id="cnt-s5e"></div>
+</section>
+
+<section class="card" data-sec>
+ <h2><span class="n">6</span>Realizează produsul final</h2><p class="time">Timp de lucru: 9 minute.</p>
+ <p>Creați mini-fișa <b>„STOP înainte de SHARE!”</b> (maximum o pagină). Completați câmpurile de mai jos; ele intră automat în documentul Word.</p>
+ <label class="f" for="s6r">Cinci reguli de verificare, formulate cu propriile cuvinte</label><textarea id="s6r" data-k="s6r" class="big" placeholder="1.&#10;2.&#10;3.&#10;4.&#10;5."></textarea>
+ <label class="f" for="s6x">Un exemplu de aplicare a unei reguli la scenariul analizat</label><textarea id="s6x" data-k="s6x"></textarea>
+ <label class="f" for="s6l">O limită a folosirii AI pentru verificarea informațiilor</label><textarea id="s6l" data-k="s6l"></textarea>
+ <label class="f" for="s6s">Cele două surse, cu titlu și link</label><textarea id="s6s" data-k="s6s"></textarea>
+ <button class="copy" id="fillSrc" type="button">Completează sursele S1 și S2</button>
+ <label class="f" for="s6p">O propoziție despre ce ați verificat personal în răspunsurile AI</label><textarea id="s6p" data-k="s6p"></textarea>
+ <p class="note">Puteți cere aplicației să propună o structură. Voi selectați, verificați și reformulați conținutul.</p>
+</section>
+
+<section class="card" data-sec>
+ <h2><span class="n">7</span>Bilet de ieșire</h2><p class="time">Timp de lucru: 3 minute. Completează individual.</p>
+ <label class="f" for="s7a">1. Astăzi am înțeles că o citare…</label><textarea id="s7a" data-k="s7a"></textarea>
+ <label class="f" for="s7b">2. Un lucru pe care AI nu l-a putut confirma a fost…</label><textarea id="s7b" data-k="s7b"></textarea>
+ <label class="f" for="s7c">3. Înainte să distribui următorul mesaj surprinzător, voi…</label><textarea id="s7c" data-k="s7c"></textarea>
+</section>
+
+<section class="card">
+ <h2>Criterii de evaluare</h2>
+ <table><tr><th>Criteriu</th><th style="width:90px">Punctaj</th></tr>
+ <tr><td>Notebook organizat și două surse importate</td><td>1 p</td></tr><tr><td>Cereri utilizate și explicații reformulate corect</td><td>2 p</td></tr><tr><td>Două citări verificate și consemnate</td><td>2 p</td></tr><tr><td>Analiza cazului și verdictul argumentat</td><td>2 p</td></tr><tr><td>Mini-fișă completă, clară și formulată personal</td><td>2 p</td></tr><tr><td>Din oficiu</td><td>1 p</td></tr><tr><th>Total</th><th>10 p</th></tr></table>
+</section>
+
+<section class="card final">
+ <h2>📤 Descarcă și predă în Classroom</h2>
+ <p>Fișa se descarcă în format <b>Word (.docx)</b> cu numele <span class="mono" id="fname"></span></p>
+ <p><button class="btn teal" id="dl">⬇ Descarcă fișa în Word</button> <button class="btn ghost" id="clear" type="button">Golește fișa</button></p>
+ <h3>Cum o încarci în Google Classroom</h3>
+ <ol class="steps"><li>Apasă <b>Descarcă fișa în Word</b>. Fișierul ajunge în folderul <b>Descărcări</b> (pe telefon: aplicația Fișiere › Descărcări).</li><li>Deschide <b>Google Classroom</b> › clasa ta › fila <b>Activitate la curs</b> › tema „Verificarea informațiilor virale cu AI”.</li><li>Apasă <b>Adaugă sau creează</b> › <b>Fișier</b> și alege documentul descărcat.</li><li>Verifică dacă ai atașat fișierul corect, apoi apasă <b>Predă</b>.</li></ol>
+ <p class="note">Răspunsurile se salvează automat în acest browser. Dacă lucrați în pereche, completați fișa pe un singur dispozitiv și scrieți ambele nume. Fiecare coleg poate preda același fișier.</p>
+</section>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+const KEY="tic9b:gemini-notebook-u2";
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let st={};try{st=JSON.parse(localStorage.getItem(KEY))||{}}catch(e){st={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}progress();fname()};
+const toast=t=>{const e=$("#toast");e.textContent=t;e.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>e.style.display="none",3000)};
+
+const ROWS4=["Ce afirmă AI?","Care este sursa indicată?","Ce spune pasajul pe scurt?","Susține afirmația integral, parțial sau deloc?","Ce trebuie corectat sau nuanțat?"];
+$("#t4").insertAdjacentHTML("beforeend",ROWS4.map((r,i)=>`<tr><th scope="row" style="background:#faf8fd">${r}</th><td><textarea data-k="s4_${i}_1" aria-label="${r} – afirmația 1"></textarea></td><td><textarea data-k="s4_${i}_2" aria-label="${r} – afirmația 2"></textarea></td></tr>`).join(""));
+const RADIOS={s4c:["Cele două afirmații sunt susținute.","Una dintre afirmații necesită corectare sau nuanțare.","Nu am găsit dovezi suficiente."],s5c:["Informație confirmată.","Informație demonstrată ca falsă.","Informație neverificată; nu avem suficiente dovezi."]};
+$$("[data-radio]").forEach(d=>{const k=d.dataset.radio;d.innerHTML=RADIOS[k].map((o,i)=>`<label><input type="radio" name="${k}" value="${i}">${o}</label>`).join("")});
+
+// încarcă valorile
+$$("[data-k]").forEach(el=>{if(st[el.dataset.k]!=null)el.value=st[el.dataset.k]});
+if(!st.data){const d=new Date();$("#data").value=d.toISOString().slice(0,10);st.data=$("#data").value}
+Object.keys(RADIOS).forEach(k=>{if(st[k]!=null){const r=$(`input[name=${k}][value="${st[k]}"]`);if(r)r.checked=true}});
+
+const words=s=>(s||"").trim().split(/\s+/).filter(Boolean).length;
+function counters(){$$("[data-words]").forEach(el=>{const [a,b]=el.dataset.words.split("-").map(Number),n=words(el.value),c=$("#cnt-"+el.id);c.textContent=`${n} cuvinte (cerința: ${a}–${b})`;c.className="counter "+(n===0?"":n>=a&&n<=b?"ok":"bad")})}
+document.addEventListener("input",e=>{const k=e.target.dataset&&e.target.dataset.k;if(k){st[k]=e.target.value;save();counters()}});
+document.addEventListener("change",e=>{if(e.target.type==="radio"){st[e.target.name]=e.target.value;save()}});
+
+const FIELDS=$$("[data-k]").map(e=>e.dataset.k).filter(k=>!["nume","clasa","echipa","data"].includes(k)).concat(Object.keys(RADIOS));
+function progress(){const n=FIELDS.filter(k=>String(st[k]??"").trim()).length,p=Math.round(100*n/FIELDS.length);$("#bar").style.width=p+"%";$("#pct").textContent=p+"%";
+ $$("[data-sec]").forEach(s=>{const ks=[...s.querySelectorAll("[data-k]")].map(e=>e.dataset.k).concat([...s.querySelectorAll("[data-radio]")].map(e=>e.dataset.radio));s.classList.toggle("done",ks.length>0&&ks.every(k=>String(st[k]??"").trim()))})}
+const clean=s=>String(s||"").trim().replace(/\s+/g,"").replace(/[^A-Za-z0-9ĂÂÎȘȚăâîșț-]/g,"");
+const fileName=()=>`IX_${clean(st.clasa).replace(/^IX[-_]?/i,"")||"clasa"}_Echipa_${clean(st.echipa)||"numar"}_Verificarea_informatiilor.docx`;
+function fname(){$("#fname").textContent=fileName()}
+
+async function copyText(t){try{await navigator.clipboard.writeText(t);toast("Copiat! Lipește în Gemini Notebook.")}catch(e){toast("Selectează textul și apasă Ctrl+C.")}}
+$$("[data-copy]").forEach(b=>b.onclick=()=>copyText(b.dataset.copy));
+$$("[data-copyid]").forEach(b=>b.onclick=()=>copyText($("#"+b.dataset.copyid).textContent));
+$("#fillSrc").onclick=()=>{const t="S1 – Parlamentul European, „Dezinformarea: 10 pași pentru a vă proteja și a-i proteja pe ceilalți”, https://www.europarl.europa.eu/topics/ro/article/20250603STO28720/dezinformarea-10-pasi-pentru-a-va-proteja-si-a-i-proteja-pe-ceilalti\nS2 – Comisia Europeană, „Disinformation and misinformation in virtual worlds”, https://digital-strategy.ec.europa.eu/en/policies/virtual-worlds-disinformation";const el=$("#s6s");el.value=el.value.trim()?el.value+"\n"+t:t;st.s6s=el.value;save()};
+$("#clear").onclick=()=>{if(confirm("Ștergi toate răspunsurile din această fișă? Acțiunea nu poate fi anulată.")){st={};try{localStorage.removeItem(KEY)}catch(e){}location.reload()}};
+
+/* ---------- generator DOCX (fără biblioteci externe) ---------- */
+const X=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])).replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g,"");
+const run=(t,o={})=>{const pr=(o.b?"<w:b/>":"")+(o.i?"<w:i/>":"")+(o.c?`<w:color w:val="${o.c}"/>`:"")+(o.sz?`<w:sz w:val="${o.sz}"/>`:"");
+ return String(t??"").split("\n").map((ln,i)=>(i?"<w:r><w:br/></w:r>":"")+`<w:r>${pr?`<w:rPr>${pr}</w:rPr>`:""}<w:t xml:space="preserve">${X(ln)}</w:t></w:r>`).join("")};
+const P=(runs,o={})=>`<w:p><w:pPr>${o.style?`<w:pStyle w:val="${o.style}"/>`:""}${o.shade?`<w:shd w:val="clear" w:color="auto" w:fill="${o.shade}"/>`:""}<w:spacing w:before="${o.before??60}" w:after="${o.after??60}"/></w:pPr>${runs}</w:p>`;
+const ans=k=>{const v=String(st[k]??"").trim();return v?run(v,{c:"1F3864"}):run("—",{c:"999999"})};
+const Q=(q,k)=>P(run(q,{b:true}),{before:120,after:20})+P(ans(k),{after:80});
+const cell=(c,o={})=>`<w:tc><w:tcPr>${o.w?`<w:tcW w:w="${o.w}" w:type="dxa"/>`:""}${o.fill?`<w:shd w:val="clear" w:color="auto" w:fill="${o.fill}"/>`:""}</w:tcPr>${P(c,{before:20,after:20})}</w:tc>`;
+const T=(rows,widths)=>`<w:tbl><w:tblPr><w:tblW w:w="5000" w:type="pct"/><w:tblBorders>${["top","left","bottom","right","insideH","insideV"].map(b=>`<w:${b} w:val="single" w:sz="4" w:space="0" w:color="A08CB8"/>`).join("")}</w:tblBorders><w:tblCellMar><w:left w:w="90" w:type="dxa"/><w:right w:w="90" w:type="dxa"/></w:tblCellMar></w:tblPr><w:tblGrid>${widths.map(w=>`<w:gridCol w:w="${w}"/>`).join("")}</w:tblGrid>${rows.map((r,ri)=>`<w:tr>${r.map((c,ci)=>cell(c,{w:widths[ci],fill:ri===0||(ci===0&&r.hdr)?"EFE4FA":null})).join("")}</w:tr>`).join("")}</w:tbl>`;
+const radio=k=>RADIOS[k].map((o,i)=>P(run((String(st[k])===String(i)?"☒ ":"☐ ")+o,String(st[k])===String(i)?{b:true,c:"1F3864"}:{}),{before:10,after:10})).join("");
+const H=(n,t)=>P(run(`${n}. ${t}`),{style:"Heading2",before:240});
+
+function buildDocument(){
+ const b=[];
+ b.push(P(run("Liceul Teoretic „Panait Cerna” Brăila • TIC • Clasa a IX-a • U2 • Gemini Notebook",{sz:18,c:"6B6680"})));
+ b.push(P(run("Verificarea informațiilor virale cu AI"),{style:"Title"}));
+ b.push(P(run("Fișă de lucru • 50 de minute • Activitate în perechi",{i:true,c:"6B6680"})));
+ b.push(T([[run("Nume și prenume",{b:true}),ans("nume")],[run("Clasa",{b:true}),ans("clasa")],[run("Echipa",{b:true}),ans("echipa")],[run("Data",{b:true}),ans("data")]].map(r=>Object.assign(r,{hdr:true})),[2600,6400]));
+ b.push(P(run("Tema: Real sau generat cu AI? Verificăm înainte să distribuim!",{b:true}),{before:160}));
+ b.push(P(run("Regula lecției: AI propune răspunsuri. Tu verifici dovezile și formulezi concluzia.",{b:true,c:"6A2AA3"}),{shade:"F3EAFB"}));
+
+ b.push(H(1,"Provocarea inițială"));
+ b.push(P(run("Scenariu fictiv: „URGENT! De luni, toate liceele din România trec la cursuri online pentru două săptămâni! În acest videoclip, o persoană care pare reprezentantul Ministerului Educației confirmă informația. Distribuie imediat, ca să afle toți!” Mesajul nu conține un link către un anunț oficial. Videoclipul este publicat de un cont necunoscut și are foarte multe vizualizări.",{i:true}),{shade:"FFF4DC"}));
+ b.push(Q("1. Ai distribui mesajul? De ce?","s1q1"),Q("2. Două lucruri pe care le-aș verifica:","s1q2"),Q("3. Numărul mare de vizualizări dovedește că informația este adevărată? Explică.","s1q3"));
+
+ b.push(H(2,"Pregătește notebookul și sursele"));
+ b.push(P(run("S1 • Parlamentul European – Dezinformarea: 10 pași pentru a vă proteja și a-i proteja pe ceilalți")),P(run("S2 • Comisia Europeană – Disinformation and misinformation in virtual worlds")));
+ b.push(Q("Instituția care publică S1:","s2i1"),Q("Instituția care publică S2:","s2i2"),Q("Un motiv pentru care am ales aceste surse:","s2m"));
+
+ b.push(H(3,"Formulează cereri clare"));
+ b.push(P(run("Reformulare cu propriile cuvinte",{b:true,c:"6A2AA3"}),{before:120}));
+ b.push(Q("Dezinformare:","s3d"),Q("Deepfake:","s3f"));
+ b.push(P(run("Doi pași aplicați la mesajul despre cursurile online",{b:true,c:"6A2AA3"}),{before:160}));
+ b.push(T([[run("Pas ales",{b:true}),run("Cum îl aplic mesajului?",{b:true})],[ans("s3p1"),ans("s3a1")],[ans("s3p2"),ans("s3a2")]],[3600,5400]));
+ b.push(P(run("Limitele răspunsului",{b:true,c:"6A2AA3"}),{before:160}));
+ b.push(Q("Sursele încărcate mă ajută să…","s3l1"),Q("Pentru a verifica anunțul concret, mai trebuie să…","s3l2"));
+
+ b.push(H(4,"Verifică două citări"));
+ b.push(T([[run("Ce verific?",{b:true}),run("Afirmația 1",{b:true}),run("Afirmația 2",{b:true})]].concat(ROWS4.map((r,i)=>Object.assign([run(r,{b:true}),ans(`s4_${i}_1`),ans(`s4_${i}_2`)],{hdr:true}))),[2600,3200,3200]));
+ b.push(P(run("Concluzia verificării mele",{b:true}),{before:160}),radio("s4c"),Q("Explicație:","s4e"));
+
+ b.push(H(5,"Rezolvă cazul inițial"));
+ b.push(Q("A. Trei elemente care justifică verificări suplimentare:","s5a"),Q("B. Două verificări concrete în afara notebookului:","s5b"));
+ b.push(P(run("C. Verdictul justificat de informațiile disponibile:",{b:true}),{before:120}),radio("s5c"));
+ b.push(Q("Argumentul nostru, în două propoziții:","s5r"),Q("D. Poți afirma că videoclipul este un deepfake numai din descrierea primită? De ce?","s5d"));
+ b.push(Q(`E. Răspuns pentru colegul care a distribuit mesajul (30–50 de cuvinte; scrise: ${words(st.s5e)}):`,"s5e"));
+
+ b.push(H(6,"Produsul final – STOP înainte de SHARE!"));
+ b.push(Q("Cinci reguli de verificare:","s6r"),Q("Exemplu de aplicare a unei reguli la scenariul analizat:","s6x"),Q("O limită a folosirii AI pentru verificarea informațiilor:","s6l"),Q("Sursele (titlu și link):","s6s"),Q("Ce am verificat personal în răspunsurile AI:","s6p"));
+
+ b.push(H(7,"Bilet de ieșire"));
+ b.push(Q("1. Astăzi am înțeles că o citare…","s7a"),Q("2. Un lucru pe care AI nu l-a putut confirma a fost…","s7b"),Q("3. Înainte să distribui următorul mesaj surprinzător, voi…","s7c"));
+
+ b.push(P(run("Criterii de evaluare"),{style:"Heading2",before:240}));
+ b.push(T([[run("Criteriu",{b:true}),run("Punctaj",{b:true}),run("Acordat",{b:true})],[run("Notebook organizat și două surse importate"),run("1 p"),run("")],[run("Cereri utilizate și explicații reformulate corect"),run("2 p"),run("")],[run("Două citări verificate și consemnate"),run("2 p"),run("")],[run("Analiza cazului și verdictul argumentat"),run("2 p"),run("")],[run("Mini-fișă completă, clară și formulată personal"),run("2 p"),run("")],[run("Din oficiu"),run("1 p"),run("")],[run("Total",{b:true}),run("10 p",{b:true}),run("")]],[6200,1400,1400]));
+ return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><w:body>${b.join("")}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1134" w:header="567" w:footer="567" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+}
+const STYLES=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri" w:eastAsia="Calibri" w:cs="Calibri"/><w:sz w:val="22"/><w:szCs w:val="22"/><w:lang w:val="ro-RO"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:after="60" w:line="264" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/></w:style><w:style w:type="paragraph" w:styleId="Title"><w:name w:val="Title"/><w:basedOn w:val="Normal"/><w:next w:val="Normal"/><w:qFormat/><w:pPr><w:spacing w:before="120" w:after="60"/></w:pPr><w:rPr><w:b/><w:color w:val="6A2AA3"/><w:sz w:val="40"/></w:rPr></w:style><w:style w:type="paragraph" w:styleId="Heading2"><w:name w:val="heading 2"/><w:basedOn w:val="Normal"/><w:next w:val="Normal"/><w:qFormat/><w:pPr><w:keepNext/><w:pBdr><w:bottom w:val="single" w:sz="6" w:space="1" w:color="8A3FC7"/></w:pBdr><w:outlineLvl w:val="1"/></w:pPr><w:rPr><w:b/><w:color w:val="8A3FC7"/><w:sz w:val="28"/></w:rPr></w:style></w:styles>`;
+const CT=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/></Types>`;
+const RELS=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/></Relationships>`;
+const DOCRELS=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>`;
+const core=()=>`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><dc:title>Verificarea informațiilor virale cu AI</dc:title><dc:creator>${X(st.nume||"Elev")}</dc:creator><dcterms:created xsi:type="dcterms:W3CDTF">${new Date().toISOString().replace(/\.\d+Z$/,"Z")}</dcterms:created></cp:coreProperties>`;
+
+// arhivă ZIP necomprimată (store) – suficientă pentru .docx
+const CRC=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+const crc32=d=>{let c=0xFFFFFFFF;for(let i=0;i<d.length;i++)c=CRC[(c^d[i])&255]^(c>>>8);return(c^0xFFFFFFFF)>>>0};
+function zip(files){const enc=new TextEncoder(),parts=[],central=[];let off=0;
+ for(const [name,txt] of files){const nm=enc.encode(name),data=enc.encode(txt),crc=crc32(data);
+  const h=new DataView(new ArrayBuffer(30));h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);h.setUint16(8,0,true);h.setUint32(14,crc,true);h.setUint32(18,data.length,true);h.setUint32(22,data.length,true);h.setUint16(26,nm.length,true);
+  parts.push(new Uint8Array(h.buffer),nm,data);
+  const c=new DataView(new ArrayBuffer(46));c.setUint32(0,0x02014b50,true);c.setUint16(4,20,true);c.setUint16(6,20,true);c.setUint16(8,0x0800,true);c.setUint32(16,crc,true);c.setUint32(20,data.length,true);c.setUint32(24,data.length,true);c.setUint16(28,nm.length,true);c.setUint32(42,off,true);
+  central.push(new Uint8Array(c.buffer),nm);off+=30+nm.length+data.length}
+ const cs=central.reduce((s,a)=>s+a.length,0),e=new DataView(new ArrayBuffer(22));e.setUint32(0,0x06054b50,true);e.setUint16(8,files.length,true);e.setUint16(10,files.length,true);e.setUint32(12,cs,true);e.setUint32(16,off,true);
+ return new Blob([...parts,...central,new Uint8Array(e.buffer)],{type:"application/vnd.openxmlformats-officedocument.wordprocessingml.document"})}
+
+$("#dl").onclick=()=>{
+ if(!String(st.nume||"").trim()){toast("Scrie numele în partea de sus a fișei.");$("#nume").focus();return}
+ const blob=zip([["[Content_Types].xml",CT],["_rels/.rels",RELS],["word/document.xml",buildDocument()],["word/_rels/document.xml.rels",DOCRELS],["word/styles.xml",STYLES],["docProps/core.xml",core()]]);
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=fileName();document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),3000);
+ toast("Fișa a fost descărcată. Acum o poți încărca în Classroom.");
+};
+progress();fname();counters();
+</script>
+</body>
+</html>
